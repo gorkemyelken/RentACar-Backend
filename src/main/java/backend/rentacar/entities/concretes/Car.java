@@ -14,6 +14,5 @@ public class Car {
 
     private int modelYear;
 
-
     private String description;
 }
