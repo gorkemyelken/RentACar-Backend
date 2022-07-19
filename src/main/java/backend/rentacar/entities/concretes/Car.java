@@ -14,10 +14,10 @@ public class Car {
     private int carId;
 
     @Column(name="brand_id")
-    private Brand brand;
+    private int brand_id;
 
     @Column(name="color_id")
-    private Color color;
+    private int color_id;
 
     @Column(name="car_name")
     private String carName;
