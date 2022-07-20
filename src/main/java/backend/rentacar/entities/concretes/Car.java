@@ -1,15 +1,19 @@
 package backend.rentacar.entities.concretes;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Data
 @Table(name="cars")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Car {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="car_id")
     private int carId;
 

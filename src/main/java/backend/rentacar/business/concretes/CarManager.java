@@ -1,6 +1,10 @@
 package backend.rentacar.business.concretes;
 
 import backend.rentacar.business.abstracts.CarService;
+import backend.rentacar.core.utilities.results.DataResult;
+import backend.rentacar.core.utilities.results.Result;
+import backend.rentacar.core.utilities.results.SuccessDataResult;
+import backend.rentacar.core.utilities.results.SuccessResult;
 import backend.rentacar.dataAccess.abstracts.CarDao;
 import backend.rentacar.entities.concretes.Car;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +23,14 @@ public class CarManager implements CarService {
     }
 
     @Override
-    public List<Car> getAll() {
-        return this.carDao.findAll();
+    public DataResult<List<Car>> getAll() {
+
+        return new SuccessDataResult<>(this.carDao.findAll(),"Cars listed.");
+    }
+
+    @Override
+    public Result add(Car car) {
+        this.carDao.save(car);
+        return new SuccessResult("Car added.");
     }
 }
