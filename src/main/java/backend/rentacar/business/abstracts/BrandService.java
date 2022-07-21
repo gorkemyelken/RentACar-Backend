@@ -9,4 +9,6 @@ import java.util.List;
 public interface BrandService {
     DataResult<List<Brand>> getAll();
     Result add(Brand brand);
+    DataResult<Brand> findByBrandId(int brandId);
+    DataResult<Brand> findByBrandName(String brandName);
 }

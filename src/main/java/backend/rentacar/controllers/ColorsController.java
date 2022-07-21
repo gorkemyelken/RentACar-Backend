@@ -6,10 +6,7 @@ import backend.rentacar.core.utilities.results.Result;
 import backend.rentacar.entities.concretes.Color;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.GeneratedValue;
 import java.util.List;
@@ -32,5 +29,13 @@ public class ColorsController {
     @PostMapping("/add")
     public Result add(@RequestBody Color color){
         return this.colorService.add(color);
+    }
+    @GetMapping("/findbycolorname")
+    public DataResult<Color> findByColorName(@RequestParam String colorName){
+        return this.colorService.findByColorName(colorName);
+    }
+    @GetMapping("/findbycolorid")
+    public DataResult<Color> findByColorId(@RequestParam int colorId){
+        return this.colorService.findByColorId(colorId);
     }
 }

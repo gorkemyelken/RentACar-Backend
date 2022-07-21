@@ -33,4 +33,59 @@ public class CarManager implements CarService {
         this.carDao.save(car);
         return new SuccessResult("Car added.");
     }
+
+    @Override
+    public DataResult<Car> findByCarId(int carId) {
+        return new SuccessDataResult<>(this.carDao.findByCarId(carId),"Car listed by id.");
+    }
+
+    @Override
+    public DataResult<Car> findByCarName(String carName) {
+        return new SuccessDataResult<>(this.carDao.findByCarName(carName),"Car listed by name.");
+    }
+
+    @Override
+    public DataResult<List<Car>> findByDailyPrice(double dailyPrice) {
+        return new SuccessDataResult<>(this.carDao.findByDailyPrice(dailyPrice),"Car listed by daily price.");
+    }
+
+    @Override
+    public DataResult<List<Car>> findByModelYear(int modelYear) {
+        return new SuccessDataResult<>(this.carDao.findByModelYear(modelYear),"Car listed by model year.");
+    }
+
+    @Override
+    public DataResult<List<Car>> findByDailyPriceLessThan(double dailyPrice) {
+        return new SuccessDataResult<>(this.carDao.findByDailyPriceLessThan(dailyPrice),"Cars are less than the entered daily price are listed.");
+    }
+
+    @Override
+    public DataResult<List<Car>> findByDailyPriceGreaterThan(double dailyPrice) {
+        return new SuccessDataResult<>(this.carDao.findByDailyPriceGreaterThan(dailyPrice),"Cars are greater than the entered daily price are listed.");
+    }
+
+    @Override
+    public DataResult<List<Car>> findByDailyPriceBetween(double startDailyPrice, double endDailyPrice) {
+        return new SuccessDataResult<>(this.carDao.findByDailyPriceBetween(startDailyPrice, endDailyPrice),"Cars in the entered daily price range are listed.");
+    }
+
+    @Override
+    public DataResult<List<Car>> findByModelYearLessThan(int modelYear) {
+        return new SuccessDataResult<>(this.carDao.findByModelYearLessThan(modelYear),"Cars are less than the entered model year are listed.");
+    }
+
+    @Override
+    public DataResult<List<Car>> findByModelYearGreaterThan(int modelYear) {
+        return new SuccessDataResult<>(this.carDao.findByModelYearGreaterThan(modelYear),"Cars are greater than the entered model year are listed.");
+    }
+
+    @Override
+    public DataResult<List<Car>> findByModelYearBetween(int startModelYear, int endModelYear) {
+        return new SuccessDataResult<>(this.carDao.findByModelYearBetween(startModelYear, endModelYear),"Cars in the entered model year range are listed.");
+    }
+
+    @Override
+    public DataResult<List<Car>> findByDescriptionContaining(String infix) {
+        return new SuccessDataResult<>(this.carDao.findByDescriptionContaining(infix),"Cars matching the description entered are listed.");
+    }
 }

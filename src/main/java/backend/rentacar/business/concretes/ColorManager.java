@@ -32,4 +32,14 @@ public class ColorManager implements ColorService {
         this.colorDao.save(color);
         return new SuccessResult("Color added.");
     }
+
+    @Override
+    public DataResult<Color> findByColorId(int colorId) {
+        return new SuccessDataResult<>(this.colorDao.findByColorId(colorId),"Color listed by id.");
+    }
+
+    @Override
+    public DataResult<Color> findByColorName(String colorName) {
+        return new SuccessDataResult<>(this.colorDao.findByColorName(colorName),"Color listed by name.");
+    }
 }

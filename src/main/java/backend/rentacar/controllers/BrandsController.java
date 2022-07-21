@@ -6,10 +6,7 @@ import backend.rentacar.core.utilities.results.Result;
 import backend.rentacar.entities.concretes.Brand;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.NamedStoredProcedureQueries;
 import java.util.List;
@@ -31,5 +28,13 @@ public class BrandsController {
     @PostMapping("/add")
     public Result add(@RequestBody Brand brand){
         return this.brandService.add(brand);
+    }
+    @GetMapping("/findbybrandname")
+    public DataResult<Brand> findByBrandName(@RequestParam String brandName){
+        return this.brandService.findByBrandName(brandName);
+    }
+    @GetMapping("/findbybrandid")
+    public DataResult<Brand> findByBrandId(@RequestParam int brandId){
+        return this.brandService.findByBrandId(brandId);
     }
 }

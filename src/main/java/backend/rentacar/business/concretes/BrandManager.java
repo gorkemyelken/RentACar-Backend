@@ -32,4 +32,14 @@ public class BrandManager implements BrandService {
         this.brandDao.save(brand);
         return new SuccessResult("Brand added.");
     }
+
+    @Override
+    public DataResult<Brand> findByBrandId(int brandId) {
+        return new SuccessDataResult<>(this.brandDao.findByBrandId(brandId),"Brand listed by id.");
+    }
+
+    @Override
+    public DataResult<Brand> findByBrandName(String brandName) {
+        return new SuccessDataResult<>(this.brandDao.findByBrandName(brandName),"Brand listed by name.");
+    }
 }
