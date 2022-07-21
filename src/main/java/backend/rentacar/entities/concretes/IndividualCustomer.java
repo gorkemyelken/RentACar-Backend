@@ -31,4 +31,7 @@ public class IndividualCustomer extends User {
 
     @Column(name="birth_date")
     private Date birthDate;
+
+    @OneToOne
+    private Rental rental;
 }

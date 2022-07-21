@@ -36,4 +36,7 @@ public class Car {
     @ManyToOne()
     @JoinColumn(name="color_id")
     private Color color;
+
+    @OneToOne
+    private Rental rental;
 }
