@@ -17,12 +17,6 @@ public class Car {
     @Column(name="car_id")
     private int carId;
 
-    @Column(name="brand_id")
-    private int brand_id;
-
-    @Column(name="color_id")
-    private int color_id;
-
     @Column(name="car_name")
     private String carName;
 
@@ -34,4 +28,12 @@ public class Car {
 
     @Column(name="description")
     private String description;
+
+    @ManyToOne()
+    @JoinColumn(name="brand_id")
+    private Brand brand;
+
+    @ManyToOne()
+    @JoinColumn(name="color_id")
+    private Color color;
 }

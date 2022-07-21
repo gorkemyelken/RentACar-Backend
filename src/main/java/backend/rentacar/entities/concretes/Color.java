@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -19,4 +20,7 @@ public class Color {
 
     @Column(name="color_name")
     private String colorName;
+
+    @OneToMany(mappedBy = "colors")
+    private List<Car> Cars;
 }

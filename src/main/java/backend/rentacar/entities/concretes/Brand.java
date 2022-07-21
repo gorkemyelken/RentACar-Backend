@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -19,4 +20,7 @@ public class Brand {
 
     @Column(name="brand_name")
     private String brandName;
+
+    @OneToMany(mappedBy = "brands")
+    private List<Car> Cars;
 }
