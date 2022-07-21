@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -24,12 +24,12 @@ public class Rental {
     private Car car;
 
     @OneToOne()
-    @JoinColumn(name="individual_customer_id")
-    private IndividualCustomer individualCustomer;
+    @JoinColumn(name="customer_id")
+    private Customer customer;
 
     @Column(name = "rent_date")
-    private Date rentDate;
+    private LocalDateTime rentDate;
 
     @Column(name="return_date")
-    private Date returnDate;
+    private LocalDateTime returnDate;
 }

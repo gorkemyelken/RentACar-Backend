@@ -20,7 +20,4 @@ public class Color {
 
     @Column(name="color_name")
     private String colorName;
-
-    @OneToMany(mappedBy = "colors")
-    private List<Car> Cars;
 }

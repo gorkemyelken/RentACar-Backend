@@ -1,6 +1,5 @@
 package backend.rentacar.entities.concretes;
 
-import backend.rentacar.entities.abstracts.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,17 +7,16 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity
 @Data
-@Table(name="individual_customers")
 @AllArgsConstructor
 @NoArgsConstructor
-@PrimaryKeyJoinColumn(name = "individual_customer_id", referencedColumnName = "user_id")
-public class IndividualCustomer extends User {
+@Entity
+@Table(name = "customers")
+public class Customer{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="individual_customer_id")
-    private int individualCustomerId;
+    @Column(name="customer_id")
+    private int customerId;
 
     @Column(name="first_name")
     private String firstName;
@@ -29,9 +27,12 @@ public class IndividualCustomer extends User {
     @Column(name="nationality_number")
     private String nationalityNumber;
 
-    @Column(name="birth_date")
-    private Date birthDate;
+    @Column(name="birth_year")
+    private int birthYear;
 
-    @OneToOne
-    private Rental rental;
+    @Column(name="email")
+    private String email;
+
+    @Column(name="password")
+    private String password;
 }
