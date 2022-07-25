@@ -20,4 +20,6 @@ public interface CarService {
     DataResult<List<Car>> findByModelYearGreaterThan(int modelYear);
     DataResult<List<Car>> findByModelYearBetween(int startModelYear, int endModelYear);
     DataResult<List<Car>> findByDescriptionContaining(String infix);
+    DataResult<List<Car>>  findByBrand(int brandId);
+    DataResult<List<Car>> findByColor(int colorId);
 }

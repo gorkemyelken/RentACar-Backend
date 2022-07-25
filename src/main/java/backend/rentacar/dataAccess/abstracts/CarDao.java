@@ -1,5 +1,6 @@
 package backend.rentacar.dataAccess.abstracts;
 
+import backend.rentacar.core.utilities.results.DataResult;
 import backend.rentacar.entities.concretes.Car;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -17,4 +18,6 @@ public interface CarDao extends JpaRepository<Car,Integer> {
     List<Car> findByModelYearGreaterThan(int modelYear);
     List<Car> findByModelYearBetween(int startModelYear, int endModelYear);
     List<Car> findByDescriptionContaining(String infix);
+    List<Car> findByBrand_BrandId(int brandId);
+    List<Car> findByColor_ColorId(int colorId);
 }

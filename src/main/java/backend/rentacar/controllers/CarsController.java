@@ -72,4 +72,12 @@ public class CarsController {
     DataResult<List<Car>> findByDescriptionContaining(@RequestParam String infix){
         return this.carService.findByDescriptionContaining(infix);
     }
+    @GetMapping("/findbybrand")
+    DataResult<List<Car>>  findByBrand(@RequestParam int brandId){
+        return this.carService.findByBrand(brandId);
+    }
+    @GetMapping("/findbycolor")
+    DataResult<List<Car>> findByColor(@RequestParam int colorId){
+        return this.carService.findByColor(colorId);
+    }
 }

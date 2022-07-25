@@ -88,4 +88,14 @@ public class CarManager implements CarService {
     public DataResult<List<Car>> findByDescriptionContaining(String infix) {
         return new SuccessDataResult<>(this.carDao.findByDescriptionContaining(infix),"Cars matching the description entered are listed.");
     }
+
+    @Override
+    public DataResult<List<Car>> findByBrand(int brandId) {
+        return new SuccessDataResult<>(this.carDao.findByBrand_BrandId(brandId),"Cars matching the brand entered are listed.");
+    }
+
+    @Override
+    public DataResult<List<Car>> findByColor(int colorId) {
+        return new SuccessDataResult<>(this.carDao.findByColor_ColorId(colorId),"Cars matching the color entered are listed.");
+    }
 }
