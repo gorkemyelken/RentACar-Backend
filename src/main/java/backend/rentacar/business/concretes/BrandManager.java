@@ -25,19 +25,19 @@ public class BrandManager implements BrandService {
 
     @Override
     public DataResult<List<Brand>> getAll() {
-        return new SuccessDataResult<>(this.brandDao.findAll(),"Brands listed.");
+        return new SuccessDataResult<List<Brand>>(this.brandDao.findAll(),"Brands listed.");
     }
 
     @Override
     public DataResult<List<Brand>> getAllByBrandNameAsc() {
         Sort sort = Sort.by(Sort.Direction.ASC,"brandName");
-        return new SuccessDataResult<>(this.brandDao.findAll(sort),"The brands were sorted in ascending alphabet of the brand name.");
+        return new SuccessDataResult<List<Brand>>(this.brandDao.findAll(sort),"The brands were sorted in ascending alphabet of the brand name.");
     }
 
     @Override
     public DataResult<List<Brand>> getAllByBrandNameDesc() {
         Sort sort = Sort.by(Sort.Direction.DESC,"brandName");
-        return new SuccessDataResult<>(this.brandDao.findAll(sort),"The brands were sorted in descending alphabet of the brand name.");
+        return new SuccessDataResult<List<Brand>>(this.brandDao.findAll(sort),"The brands were sorted in descending alphabet of the brand name.");
     }
 
     @Override
@@ -48,11 +48,11 @@ public class BrandManager implements BrandService {
 
     @Override
     public DataResult<Brand> findByBrandId(int brandId) {
-        return new SuccessDataResult<>(this.brandDao.findByBrandId(brandId),"Brand listed by id.");
+        return new SuccessDataResult<Brand>(this.brandDao.findByBrandId(brandId),"Brand listed by id.");
     }
 
     @Override
     public DataResult<Brand> findByBrandName(String brandName) {
-        return new SuccessDataResult<>(this.brandDao.findByBrandName(brandName),"Brand listed by name.");
+        return new SuccessDataResult<Brand>(this.brandDao.findByBrandName(brandName),"Brand listed by name.");
     }
 }

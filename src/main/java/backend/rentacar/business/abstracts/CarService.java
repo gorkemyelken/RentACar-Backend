@@ -3,6 +3,8 @@ package backend.rentacar.business.abstracts;
 import backend.rentacar.core.utilities.results.DataResult;
 import backend.rentacar.core.utilities.results.Result;
 import backend.rentacar.entities.concretes.Car;
+import backend.rentacar.entities.dtos.CarWithBrandDto;
+import backend.rentacar.entities.dtos.CarWithColorDto;
 
 import javax.xml.crypto.Data;
 import java.util.List;
@@ -30,4 +32,6 @@ public interface CarService {
     DataResult<List<Car>> findByDescriptionContaining(String infix);
     DataResult<List<Car>>  findByBrand(int brandId);
     DataResult<List<Car>> findByColor(int colorId);
+    DataResult<List<CarWithBrandDto>> getCarWithBrandDetails();
+    DataResult<List<CarWithColorDto>> getCarWithColorDetails();
 }

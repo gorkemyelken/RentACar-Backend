@@ -26,12 +26,12 @@ public class RentalManager implements RentalService {
 
     @Override
     public DataResult<List<Rental>> getAll() {
-        return new SuccessDataResult<>(this.rentalDao.findAll(),"Rentals listed.");
+        return new SuccessDataResult<List<Rental>>(this.rentalDao.findAll(),"Rentals listed.");
     }
 
     @Override
     public DataResult<Rental> findByRentalId(int rental_id) {
-        return new SuccessDataResult<>(this.rentalDao.findByRentalId(rental_id),"Rental listed by id.");
+        return new SuccessDataResult<Rental>(this.rentalDao.findByRentalId(rental_id),"Rental listed by id.");
     }
 
     @Override
@@ -43,24 +43,24 @@ public class RentalManager implements RentalService {
     @Override
     public DataResult<List<Rental>> getAllByRentDateAsc() {
         Sort sort = Sort.by(Sort.Direction.ASC,"rentDate");
-        return new SuccessDataResult<>(this.rentalDao.findAll(sort),"The rentals were sorted in ascending of the rent date.");
+        return new SuccessDataResult<List<Rental>>(this.rentalDao.findAll(sort),"The rentals were sorted in ascending of the rent date.");
     }
 
     @Override
     public DataResult<List<Rental>> getAllByRentDateDesc() {
         Sort sort = Sort.by(Sort.Direction.DESC,"rentDate");
-        return new SuccessDataResult<>(this.rentalDao.findAll(sort),"The rentals were sorted in descending of the rent date.");
+        return new SuccessDataResult<List<Rental>>(this.rentalDao.findAll(sort),"The rentals were sorted in descending of the rent date.");
     }
 
     @Override
     public DataResult<List<Rental>> getAllByReturnDateAsc() {
         Sort sort = Sort.by(Sort.Direction.ASC,"returnDate");
-        return new SuccessDataResult<>(this.rentalDao.findAll(sort),"The rentals were sorted in ascending of the return date.");
+        return new SuccessDataResult<List<Rental>>(this.rentalDao.findAll(sort),"The rentals were sorted in ascending of the return date.");
     }
 
     @Override
     public DataResult<List<Rental>> getAllByReturnDateDesc() {
         Sort sort = Sort.by(Sort.Direction.DESC,"returnDate");
-        return new SuccessDataResult<>(this.rentalDao.findAll(sort),"The rentals were sorted in descending of the return date.");
+        return new SuccessDataResult<List<Rental>>(this.rentalDao.findAll(sort),"The rentals were sorted in descending of the return date.");
     }
 }

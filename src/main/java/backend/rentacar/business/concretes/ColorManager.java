@@ -25,19 +25,19 @@ public class ColorManager implements ColorService {
     @Override
     public DataResult<List<Color>> getAll() {
 
-        return new SuccessDataResult<>(this.colorDao.findAll(),"Colors listed.");
+        return new SuccessDataResult<List<Color>>(this.colorDao.findAll(),"Colors listed.");
     }
 
     @Override
     public DataResult<List<Color>> getAllByColorNameAsc() {
         Sort sort = Sort.by(Sort.Direction.ASC,"colorName");
-        return new SuccessDataResult<>(this.colorDao.findAll(sort),"The colors were sorted in ascending alphabet of the color name.");
+        return new SuccessDataResult<List<Color>>(this.colorDao.findAll(sort),"The colors were sorted in ascending alphabet of the color name.");
     }
 
     @Override
     public DataResult<List<Color>> getAllByColorNameDesc() {
         Sort sort = Sort.by(Sort.Direction.DESC,"colorName");
-        return new SuccessDataResult<>(this.colorDao.findAll(sort),"The colors were sorted in descending alphabet of the color name.");
+        return new SuccessDataResult<List<Color>>(this.colorDao.findAll(sort),"The colors were sorted in descending alphabet of the color name.");
     }
 
     @Override
@@ -48,11 +48,11 @@ public class ColorManager implements ColorService {
 
     @Override
     public DataResult<Color> findByColorId(int colorId) {
-        return new SuccessDataResult<>(this.colorDao.findByColorId(colorId),"Color listed by id.");
+        return new SuccessDataResult<Color>(this.colorDao.findByColorId(colorId),"Color listed by id.");
     }
 
     @Override
     public DataResult<Color> findByColorName(String colorName) {
-        return new SuccessDataResult<>(this.colorDao.findByColorName(colorName),"Color listed by name.");
+        return new SuccessDataResult<Color>(this.colorDao.findByColorName(colorName),"Color listed by name.");
     }
 }

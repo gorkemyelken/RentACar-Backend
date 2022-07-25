@@ -24,7 +24,7 @@ public class CustomerManager implements CustomerService {
 
     @Override
     public DataResult<List<Customer>> getall() {
-        return new SuccessDataResult<>(this.customerDao.findAll(),"Customers listed.");
+        return new SuccessDataResult<List<Customer>>(this.customerDao.findAll(),"Customers listed.");
     }
 
     @Override

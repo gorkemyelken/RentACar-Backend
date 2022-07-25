@@ -4,6 +4,8 @@ import backend.rentacar.business.abstracts.CarService;
 import backend.rentacar.core.utilities.results.DataResult;
 import backend.rentacar.core.utilities.results.Result;
 import backend.rentacar.entities.concretes.Car;
+import backend.rentacar.entities.dtos.CarWithBrandDto;
+import backend.rentacar.entities.dtos.CarWithColorDto;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -107,5 +109,13 @@ public class CarsController {
     @GetMapping("/getallsortedbymodelyeardesc")
     DataResult<List<Car>> getAllSortedByModelYearDesc(){
         return this.carService.getAllSortedByModelYearDesc();
+    }
+    @GetMapping("getcarwithbranddetails")
+    DataResult<List<CarWithBrandDto>> getCarWithBrandDetails(){
+        return this.carService.getCarWithBrandDetails();
+    }
+    @GetMapping("getcarwithcolordetails")
+    DataResult<List<CarWithColorDto>> getCarWithColorDetails(){
+        return this.carService.getCarWithColorDetails();
     }
 }
