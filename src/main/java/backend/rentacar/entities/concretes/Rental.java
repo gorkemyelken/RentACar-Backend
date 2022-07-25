@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity
@@ -28,8 +29,8 @@ public class Rental {
     private Customer customer;
 
     @Column(name = "rent_date")
-    private LocalDateTime rentDate;
+    private java.sql.Date rentDate;
 
     @Column(name="return_date")
-    private LocalDateTime returnDate;
+    private java.sql.Date returnDate;
 }

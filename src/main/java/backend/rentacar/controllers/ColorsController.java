@@ -38,4 +38,12 @@ public class ColorsController {
     public DataResult<Color> findByColorId(@RequestParam int colorId){
         return this.colorService.findByColorId(colorId);
     }
+    @GetMapping("getallbycolornameasc")
+    DataResult<List<Color>> getAllByColorNameAsc(){
+        return this.colorService.getAllByColorNameAsc();
+    }
+    @GetMapping("getallbycolornamedesc")
+    DataResult<List<Color>> getAllByColorNameDesc(){
+        return this.colorService.getAllByColorNameDesc();
+    }
 }

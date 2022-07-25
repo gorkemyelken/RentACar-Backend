@@ -80,4 +80,32 @@ public class CarsController {
     DataResult<List<Car>> findByColor(@RequestParam int colorId){
         return this.carService.findByColor(colorId);
     }
+    @GetMapping("/getallbypage")
+    DataResult<List<Car>> getAll(int pageNo, int pageSize){
+        return this.carService.getAll(pageNo, pageSize);
+    }
+    @GetMapping("/getallsortedbycarnameasc")
+    DataResult<List<Car>> getAllSortedByCarNameAsc(){
+        return this.carService.getAllSortedByCarNameAsc();
+    }
+    @GetMapping("/getallsortedbycarnamedesc")
+    DataResult<List<Car>> getAllSortedByCarNameDesc(){
+        return this.carService.getAllSortedByCarNameDesc();
+    }
+    @GetMapping("/getallsortedbydailypriceasc")
+    DataResult<List<Car>> getAllSortedByDailyPriceAsc(){
+        return this.carService.getAllSortedByDailyPriceAsc();
+    }
+    @GetMapping("/getallsortedbydailypricedesc")
+    DataResult<List<Car>> getAllSortedByDailyPriceDesc(){
+        return this.carService.getAllSortedByDailyPriceDesc();
+    }
+    @GetMapping("/getallsortedbymodelyearasc")
+    DataResult<List<Car>> getAllSortedByModelYearAsc(){
+        return this.carService.getAllSortedByModelYearAsc();
+    }
+    @GetMapping("/getallsortedbymodelyeardesc")
+    DataResult<List<Car>> getAllSortedByModelYearDesc(){
+        return this.carService.getAllSortedByModelYearDesc();
+    }
 }

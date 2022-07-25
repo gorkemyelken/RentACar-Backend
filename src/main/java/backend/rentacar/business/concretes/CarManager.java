@@ -8,6 +8,9 @@ import backend.rentacar.core.utilities.results.SuccessResult;
 import backend.rentacar.dataAccess.abstracts.CarDao;
 import backend.rentacar.entities.concretes.Car;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,6 +29,48 @@ public class CarManager implements CarService {
     public DataResult<List<Car>> getAll() {
 
         return new SuccessDataResult<>(this.carDao.findAll(),"Cars listed.");
+    }
+
+    @Override
+    public DataResult<List<Car>> getAll(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo - 1,pageSize);
+        return new SuccessDataResult<List<Car>>(this.carDao.findAll(pageable).getContent());
+    }
+
+    @Override
+    public DataResult<List<Car>> getAllSortedByCarNameAsc() {
+        Sort sort = Sort.by(Sort.Direction.ASC,"carName");
+        return new SuccessDataResult<List<Car>>(this.carDao.findAll(sort),"The cars were sorted in ascending alphabet of the car name.");
+    }
+
+    @Override
+    public DataResult<List<Car>> getAllSortedByCarNameDesc() {
+        Sort sort = Sort.by(Sort.Direction.DESC,"carName");
+        return new SuccessDataResult<List<Car>>(this.carDao.findAll(sort),"The cars were sorted in descending alphabet of the car name.");
+    }
+
+    @Override
+    public DataResult<List<Car>> getAllSortedByDailyPriceAsc() {
+        Sort sort = Sort.by(Sort.Direction.ASC,"dailyPrice");
+        return new SuccessDataResult<List<Car>>(this.carDao.findAll(sort),"The cars were sorted in ascending of the daily price.");
+    }
+
+    @Override
+    public DataResult<List<Car>> getAllSortedByDailyPriceDesc() {
+        Sort sort = Sort.by(Sort.Direction.ASC,"dailyPrice");
+        return new SuccessDataResult<List<Car>>(this.carDao.findAll(sort),"The cars were sorted in descending of the daily price.");
+    }
+
+    @Override
+    public DataResult<List<Car>> getAllSortedByModelYearAsc() {
+        Sort sort = Sort.by(Sort.Direction.ASC,"modelYear");
+        return new SuccessDataResult<List<Car>>(this.carDao.findAll(sort),"The cars were sorted in ascending of the model year.");
+    }
+
+    @Override
+    public DataResult<List<Car>> getAllSortedByModelYearDesc() {
+        Sort sort = Sort.by(Sort.Direction.DESC,"modelYear");
+        return new SuccessDataResult<List<Car>>(this.carDao.findAll(sort),"The cars were sorted in descending alphabet of the model year.");
     }
 
     @Override

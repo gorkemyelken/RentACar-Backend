@@ -8,6 +8,7 @@ import backend.rentacar.core.utilities.results.SuccessResult;
 import backend.rentacar.dataAccess.abstracts.BrandDao;
 import backend.rentacar.entities.concretes.Brand;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,6 +26,18 @@ public class BrandManager implements BrandService {
     @Override
     public DataResult<List<Brand>> getAll() {
         return new SuccessDataResult<>(this.brandDao.findAll(),"Brands listed.");
+    }
+
+    @Override
+    public DataResult<List<Brand>> getAllByBrandNameAsc() {
+        Sort sort = Sort.by(Sort.Direction.ASC,"brandName");
+        return new SuccessDataResult<>(this.brandDao.findAll(sort),"The brands were sorted in ascending alphabet of the brand name.");
+    }
+
+    @Override
+    public DataResult<List<Brand>> getAllByBrandNameDesc() {
+        Sort sort = Sort.by(Sort.Direction.DESC,"brandName");
+        return new SuccessDataResult<>(this.brandDao.findAll(sort),"The brands were sorted in descending alphabet of the brand name.");
     }
 
     @Override

@@ -8,6 +8,7 @@ import backend.rentacar.core.utilities.results.SuccessResult;
 import backend.rentacar.dataAccess.abstracts.ColorDao;
 import backend.rentacar.entities.concretes.Color;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,6 +26,18 @@ public class ColorManager implements ColorService {
     public DataResult<List<Color>> getAll() {
 
         return new SuccessDataResult<>(this.colorDao.findAll(),"Colors listed.");
+    }
+
+    @Override
+    public DataResult<List<Color>> getAllByColorNameAsc() {
+        Sort sort = Sort.by(Sort.Direction.ASC,"colorName");
+        return new SuccessDataResult<>(this.colorDao.findAll(sort),"The colors were sorted in ascending alphabet of the color name.");
+    }
+
+    @Override
+    public DataResult<List<Color>> getAllByColorNameDesc() {
+        Sort sort = Sort.by(Sort.Direction.DESC,"colorName");
+        return new SuccessDataResult<>(this.colorDao.findAll(sort),"The colors were sorted in descending alphabet of the color name.");
     }
 
     @Override

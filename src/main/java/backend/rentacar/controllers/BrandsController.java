@@ -37,4 +37,12 @@ public class BrandsController {
     public DataResult<Brand> findByBrandId(@RequestParam int brandId){
         return this.brandService.findByBrandId(brandId);
     }
+    @GetMapping("/getallbybrandnameasc")
+    DataResult<List<Brand>> getAllByBrandNameAsc(){
+        return this.brandService.getAllByBrandNameAsc();
+    }
+    @GetMapping("/getallbybrandnamedesc")
+    DataResult<List<Brand>> getAllByBrandNameDesc(){
+        return this.brandService.getAllByBrandNameDesc();
+    }
 }
