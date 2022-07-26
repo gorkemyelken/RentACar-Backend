@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -35,4 +36,7 @@ public class Customer{
 
     @Column(name="password")
     private String password;
+
+    @OneToMany(mappedBy = "rental")
+    private List<Rental> rentals;
 }

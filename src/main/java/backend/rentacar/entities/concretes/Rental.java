@@ -24,7 +24,7 @@ public class Rental {
     @JoinColumn(name="car_id")
     private Car car;
 
-    @OneToOne()
+    @ManyToOne()
     @JoinColumn(name="customer_id")
     private Customer customer;
 

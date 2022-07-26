@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -36,4 +37,7 @@ public class Car {
     @ManyToOne()
     @JoinColumn(name="color_id")
     private Color color;
+
+    @OneToOne(mappedBy = "rental")
+    private Rental rental;
 }
