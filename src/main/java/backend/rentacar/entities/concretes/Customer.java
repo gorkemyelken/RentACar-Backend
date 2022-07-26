@@ -14,7 +14,6 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "customers")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","rentals"})
 public class Customer{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,7 +37,4 @@ public class Customer{
 
     @Column(name="password")
     private String password;
-
-    @OneToMany(mappedBy = "rental")
-    private List<Rental> rentals;
 }

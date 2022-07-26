@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -16,14 +17,17 @@ import javax.validation.constraints.NotNull;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
-    private int id;
+    @Column(name="user_id")
+    private int userId;
 
     @Column(name="email")
     @Email
     @NotNull
+    @NotBlank
     private String email;
 
     @Column(name="password")
+    @NotNull
+    @NotBlank
     private String password;
 }
