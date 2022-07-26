@@ -1,5 +1,6 @@
 package backend.rentacar.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "customers")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","rentals"})
 public class Customer{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
