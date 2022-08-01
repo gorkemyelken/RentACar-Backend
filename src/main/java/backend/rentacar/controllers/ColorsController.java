@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.GeneratedValue;
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -29,7 +30,7 @@ public class ColorsController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity add(@RequestBody Color color){
+    public ResponseEntity add(@Valid @RequestBody Color color){
         return new ResponseEntity(this.colorService.add(color), HttpStatus.CREATED);
     }
     @GetMapping("/findbycolorname")

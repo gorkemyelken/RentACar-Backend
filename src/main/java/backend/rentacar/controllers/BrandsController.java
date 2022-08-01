@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.NamedStoredProcedureQueries;
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -28,7 +29,7 @@ public class BrandsController {
         return new ResponseEntity<>(this.brandService.getAll(), HttpStatus.OK);
     }
     @PostMapping("/add")
-    public ResponseEntity add(@RequestBody Brand brand){
+    public ResponseEntity add(@Valid @RequestBody Brand brand){
         return new ResponseEntity(this.brandService.add(brand),HttpStatus.CREATED);
     }
     @GetMapping("/findbybrandname")

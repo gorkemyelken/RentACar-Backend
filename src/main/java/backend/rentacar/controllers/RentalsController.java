@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -31,7 +32,7 @@ public class RentalsController {
         return new ResponseEntity<>(this.rentalService.findByRentalId(rental_id), HttpStatus.OK);
     }
     @PostMapping("/add")
-    public ResponseEntity add(@RequestBody Rental rental){
+    public ResponseEntity add(@Valid @RequestBody Rental rental){
         return new ResponseEntity(this.rentalService.add(rental), HttpStatus.CREATED);
     }
     @GetMapping("getallbyrentdateasc")
