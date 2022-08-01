@@ -22,7 +22,7 @@ import org.springframework.http.HttpStatus;
 @RequestMapping("/api/users")
 public class UsersController {
 
-    private UserService userService;
+    private final UserService userService;
 
     @Autowired
     public UsersController(UserService userService) {
@@ -30,28 +30,18 @@ public class UsersController {
     }
 
     @GetMapping("/getall")
-    DataResult<List<User>> getall(){
-        return this.userService.getall();
+    public ResponseEntity<?> getall(){
+        return ResponseEntity.ok(this.userService.getall());
     }
     @PostMapping("/add")
     public ResponseEntity<?> add(@Valid @RequestBody User user){
         return ResponseEntity.ok(this.userService.add(user));
     }
     @GetMapping("/findbyemail")
-    DataResult<User> findByEmail(@RequestParam String email){
-        return this.userService.findByEmail(email);
+    public ResponseEntity<?> findByEmail(@RequestParam String email){
+        return ResponseEntity.ok(this.userService.findByEmail(email));
     }
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorDataResult<Object> handleValidationException(MethodArgumentNotValidException exceptions){
-        Map<String,String> validationErrors = new HashMap<String, String>();
-        for(FieldError fieldError : exceptions.getBindingResult().getFieldErrors()) {
-            validationErrors.put(fieldError.getField(), fieldError.getDefaultMessage());
-        }
 
-        ErrorDataResult<Object> errors = new ErrorDataResult<Object>(validationErrors,"Validation errors.");
-        return errors;
-    }
 
 }
