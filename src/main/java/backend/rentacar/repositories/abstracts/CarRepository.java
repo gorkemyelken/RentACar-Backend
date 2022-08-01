@@ -1,6 +1,5 @@
-package backend.rentacar.dataAccess.abstracts;
+package backend.rentacar.repositories.abstracts;
 
-import backend.rentacar.core.utilities.results.DataResult;
 import backend.rentacar.entities.concretes.Car;
 import backend.rentacar.entities.dtos.CarWithBrandDto;
 import backend.rentacar.entities.dtos.CarWithColorDto;
@@ -9,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface CarDao extends JpaRepository<Car,Integer> {
+public interface CarRepository extends JpaRepository<Car,Integer> {
     Car findByCarId(int carId);
     Car findByCarName(String carName);
     List<Car> findByDailyPrice(double dailyPrice);

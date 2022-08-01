@@ -5,7 +5,7 @@ import backend.rentacar.core.utilities.results.DataResult;
 import backend.rentacar.core.utilities.results.Result;
 import backend.rentacar.core.utilities.results.SuccessDataResult;
 import backend.rentacar.core.utilities.results.SuccessResult;
-import backend.rentacar.dataAccess.abstracts.UserDao;
+import backend.rentacar.repositories.abstracts.UserRepository;
 import backend.rentacar.entities.concretes.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,26 +15,26 @@ import java.util.List;
 @Service
 public class UserManager implements UserService {
 
-    private UserDao userDao;
+    private UserRepository userRepository;
 
     @Autowired
-    public UserManager(UserDao userDao) {
-        this.userDao = userDao;
+    public UserManager(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     @Override
     public DataResult<List<User>> getAll() {
-        return new SuccessDataResult<List<User>>(this.userDao.findAll(),"Users listed.");
+        return new SuccessDataResult<List<User>>(this.userRepository.findAll(),"Users listed.");
     }
 
     @Override
     public Result add(User user) {
-        this.userDao.save(user);
+        this.userRepository.save(user);
         return new SuccessResult("User added.");
     }
 
     @Override
     public DataResult<User> findByEmail(String email) {
-        return new SuccessDataResult<User>(this.userDao.findByEmail(email),"User listed by email.");
+        return new SuccessDataResult<User>(this.userRepository.findByEmail(email),"User listed by email.");
     }
 }

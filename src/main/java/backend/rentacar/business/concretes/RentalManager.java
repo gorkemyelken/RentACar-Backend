@@ -5,8 +5,7 @@ import backend.rentacar.core.utilities.results.DataResult;
 import backend.rentacar.core.utilities.results.Result;
 import backend.rentacar.core.utilities.results.SuccessDataResult;
 import backend.rentacar.core.utilities.results.SuccessResult;
-import backend.rentacar.dataAccess.abstracts.RentalDao;
-import backend.rentacar.entities.concretes.Color;
+import backend.rentacar.repositories.abstracts.RentalRepository;
 import backend.rentacar.entities.concretes.Rental;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -17,50 +16,50 @@ import java.util.List;
 @Service
 public class RentalManager implements RentalService {
 
-    private RentalDao rentalDao;
+    private RentalRepository rentalRepository;
 
     @Autowired
-    public RentalManager(RentalDao rentalDao) {
-        this.rentalDao = rentalDao;
+    public RentalManager(RentalRepository rentalRepository) {
+        this.rentalRepository = rentalRepository;
     }
 
     @Override
     public DataResult<List<Rental>> getAll() {
-        return new SuccessDataResult<List<Rental>>(this.rentalDao.findAll(),"Rentals listed.");
+        return new SuccessDataResult<List<Rental>>(this.rentalRepository.findAll(),"Rentals listed.");
     }
 
     @Override
     public DataResult<Rental> findByRentalId(int rental_id) {
-        return new SuccessDataResult<Rental>(this.rentalDao.findByRentalId(rental_id),"Rental listed by id.");
+        return new SuccessDataResult<Rental>(this.rentalRepository.findByRentalId(rental_id),"Rental listed by id.");
     }
 
     @Override
     public Result add(Rental rental) {
-        this.rentalDao.save(rental);
+        this.rentalRepository.save(rental);
         return new SuccessResult("Rental added.");
     }
 
     @Override
     public DataResult<List<Rental>> getAllByRentDateAsc() {
         Sort sort = Sort.by(Sort.Direction.ASC,"rentDate");
-        return new SuccessDataResult<List<Rental>>(this.rentalDao.findAll(sort),"The rentals were sorted in ascending of the rent date.");
+        return new SuccessDataResult<List<Rental>>(this.rentalRepository.findAll(sort),"The rentals were sorted in ascending of the rent date.");
     }
 
     @Override
     public DataResult<List<Rental>> getAllByRentDateDesc() {
         Sort sort = Sort.by(Sort.Direction.DESC,"rentDate");
-        return new SuccessDataResult<List<Rental>>(this.rentalDao.findAll(sort),"The rentals were sorted in descending of the rent date.");
+        return new SuccessDataResult<List<Rental>>(this.rentalRepository.findAll(sort),"The rentals were sorted in descending of the rent date.");
     }
 
     @Override
     public DataResult<List<Rental>> getAllByReturnDateAsc() {
         Sort sort = Sort.by(Sort.Direction.ASC,"returnDate");
-        return new SuccessDataResult<List<Rental>>(this.rentalDao.findAll(sort),"The rentals were sorted in ascending of the return date.");
+        return new SuccessDataResult<List<Rental>>(this.rentalRepository.findAll(sort),"The rentals were sorted in ascending of the return date.");
     }
 
     @Override
     public DataResult<List<Rental>> getAllByReturnDateDesc() {
         Sort sort = Sort.by(Sort.Direction.DESC,"returnDate");
-        return new SuccessDataResult<List<Rental>>(this.rentalDao.findAll(sort),"The rentals were sorted in descending of the return date.");
+        return new SuccessDataResult<List<Rental>>(this.rentalRepository.findAll(sort),"The rentals were sorted in descending of the return date.");
     }
 }
