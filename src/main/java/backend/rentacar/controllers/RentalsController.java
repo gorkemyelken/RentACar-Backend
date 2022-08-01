@@ -6,6 +6,8 @@ import backend.rentacar.core.utilities.results.Result;
 import backend.rentacar.entities.concretes.Rental;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,38 +16,38 @@ import java.util.List;
 @RequestMapping("/api/rentals")
 public class RentalsController {
 
-    private RentalService rentalService;
+    private final RentalService rentalService;
 
     @Autowired
     public RentalsController(RentalService rentalService) {
         this.rentalService = rentalService;
     }
     @GetMapping("/getall")
-    DataResult<List<Rental>> getAll(){
-        return this.rentalService.getAll();
+    public ResponseEntity<?> getAll(){
+        return new ResponseEntity<>(this.rentalService.getAll(), HttpStatus.OK);
     }
     @GetMapping("/findbyrentalid")
-    public DataResult<Rental> findByRentalId(@RequestParam int rental_id){
-        return this.rentalService.findByRentalId(rental_id);
+    public ResponseEntity<?> findByRentalId(@RequestParam int rental_id){
+        return new ResponseEntity<>(this.rentalService.findByRentalId(rental_id), HttpStatus.OK);
     }
     @PostMapping("/add")
-    public Result add(@RequestBody Rental rental){
-        return this.rentalService.add(rental);
+    public ResponseEntity add(@RequestBody Rental rental){
+        return new ResponseEntity(this.rentalService.add(rental), HttpStatus.CREATED);
     }
     @GetMapping("getallbyrentdateasc")
-    DataResult<List<Rental>> getAllByRentDateAsc(){
-        return this.rentalService.getAllByRentDateAsc();
+    ResponseEntity<?> getAllByRentDateAsc(){
+        return new ResponseEntity<>(this.rentalService.getAllByRentDateAsc(), HttpStatus.OK);
     }
     @GetMapping("getallbyrentdatedesc")
-    DataResult<List<Rental>> getAllByRentDateDesc(){
-        return this.rentalService.getAllByRentDateDesc();
+    ResponseEntity<?> getAllByRentDateDesc(){
+        return new ResponseEntity<>(this.rentalService.getAllByRentDateDesc(), HttpStatus.OK);
     }
     @GetMapping("getallbyreturndateasc")
-    DataResult<List<Rental>> getAllByReturnDateAsc(){
-        return this.rentalService.getAllByReturnDateAsc();
+    ResponseEntity<?> getAllByReturnDateAsc(){
+        return new ResponseEntity<>(this.rentalService.getAllByReturnDateAsc(), HttpStatus.OK);
     }
     @GetMapping("getallbyreturndatedesc")
-    DataResult<List<Rental>> getAllByReturnDateDesc(){
-        return this.rentalService.getAllByReturnDateDesc();
+    ResponseEntity<?> getAllByReturnDateDesc(){
+        return new ResponseEntity<>(this.rentalService.getAllByReturnDateDesc(), HttpStatus.OK);
     }
 }
