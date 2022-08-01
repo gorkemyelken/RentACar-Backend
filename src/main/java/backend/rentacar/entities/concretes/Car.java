@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -20,12 +22,17 @@ public class Car {
     private int carId;
 
     @Column(name="car_name")
+    @NotNull
     private String carName;
 
     @Column(name="daily_price")
+    @NotNull
+    @NotBlank
     private double dailyPrice;
 
     @Column(name="model_year")
+    @NotNull
+    @NotBlank
     private int modelYear;
 
     @Column(name="description")

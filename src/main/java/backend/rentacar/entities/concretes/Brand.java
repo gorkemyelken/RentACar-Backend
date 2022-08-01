@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -21,6 +22,7 @@ public class Brand {
     private int brandId;
 
     @Column(name="brand_name")
+    @NotNull
     private String brandName;
 
     @OneToMany(mappedBy = "brand")
