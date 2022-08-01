@@ -31,15 +31,15 @@ public class UsersController {
 
     @GetMapping("/getall")
     public ResponseEntity<?> getall(){
-        return ResponseEntity.ok(this.userService.getall());
+        return new ResponseEntity<>(this.userService.getall(), HttpStatus.OK);
     }
     @PostMapping("/add")
-    public ResponseEntity<?> add(@Valid @RequestBody User user){
-        return ResponseEntity.ok(this.userService.add(user));
+    public ResponseEntity add(@Valid @RequestBody User user){
+        return new ResponseEntity(this.userService.add(user), HttpStatus.CREATED);
     }
     @GetMapping("/findbyemail")
     public ResponseEntity<?> findByEmail(@RequestParam String email){
-        return ResponseEntity.ok(this.userService.findByEmail(email));
+        return new ResponseEntity<>(this.userService.findByEmail(email), HttpStatus.OK);
     }
 
 
