@@ -6,6 +6,8 @@ import backend.rentacar.core.utilities.results.Result;
 import backend.rentacar.entities.concretes.Color;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.GeneratedValue;
@@ -22,28 +24,28 @@ public class ColorsController {
     }
 
     @GetMapping("/getall")
-    public DataResult<List<Color>> getAll(){
-        return this.colorService.getAll();
+    public ResponseEntity<?> getAll(){
+        return new ResponseEntity<>(this.colorService.getAll(), HttpStatus.OK);
     }
 
     @PostMapping("/add")
-    public Result add(@RequestBody Color color){
-        return this.colorService.add(color);
+    public ResponseEntity add(@RequestBody Color color){
+        return new ResponseEntity(this.colorService.add(color), HttpStatus.CREATED);
     }
     @GetMapping("/findbycolorname")
-    public DataResult<Color> findByColorName(@RequestParam String colorName){
-        return this.colorService.findByColorName(colorName);
+    public ResponseEntity<?> findByColorName(@RequestParam String colorName){
+        return new ResponseEntity<>(this.colorService.findByColorName(colorName), HttpStatus.OK);
     }
     @GetMapping("/findbycolorid")
-    public DataResult<Color> findByColorId(@RequestParam int colorId){
-        return this.colorService.findByColorId(colorId);
+    public ResponseEntity<?> findByColorId(@RequestParam int colorId){
+        return new ResponseEntity<>(this.colorService.findByColorId(colorId), HttpStatus.OK);
     }
     @GetMapping("getallbycolornameasc")
-    DataResult<List<Color>> getAllByColorNameAsc(){
-        return this.colorService.getAllByColorNameAsc();
+    public ResponseEntity<?> getAllByColorNameAsc(){
+        return new ResponseEntity<>(this.colorService.getAllByColorNameAsc(), HttpStatus.OK);
     }
     @GetMapping("getallbycolornamedesc")
-    DataResult<List<Color>> getAllByColorNameDesc(){
-        return this.colorService.getAllByColorNameDesc();
+    public ResponseEntity<?> getAllByColorNameDesc(){
+        return new ResponseEntity<>(this.colorService.getAllByColorNameDesc(), HttpStatus.OK);
     }
 }
