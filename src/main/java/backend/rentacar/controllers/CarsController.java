@@ -1,21 +1,17 @@
 package backend.rentacar.controllers;
 
 import backend.rentacar.business.abstracts.CarService;
-import backend.rentacar.core.utilities.results.DataResult;
-import backend.rentacar.core.utilities.results.Result;
 import backend.rentacar.entities.concretes.Car;
-import backend.rentacar.entities.dtos.CarWithBrandDto;
-import backend.rentacar.entities.dtos.CarWithColorDto;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/cars")
 public class CarsController {
-    private CarService carService;
+    private final CarService carService;
 
     @Autowired
     public CarsController(CarService carService) {
@@ -23,99 +19,99 @@ public class CarsController {
     }
 
     @GetMapping("/getall")
-    public DataResult<List<Car>> getAll(){
-        return this.carService.getAll();
+    public ResponseEntity<?> getAll(){
+        return new ResponseEntity<>(this.carService.getAll(), HttpStatus.OK);
     }
     @PostMapping("/add")
-    public Result add(@RequestBody Car car){
-        return this.carService.add(car);
+    public ResponseEntity add(@RequestBody Car car){
+        return new ResponseEntity(this.carService.add(car), HttpStatus.CREATED);
     }
     @GetMapping("/findbycarid")
-    DataResult<Car> findByCarId(@RequestParam int carId){
-        return this.carService.findByCarId(carId);
+    public ResponseEntity<?> findByCarId(@RequestParam int carId){
+        return new ResponseEntity<>(this.carService.findByCarId(carId), HttpStatus.OK);
     }
     @GetMapping("/findbycarname")
-    DataResult<Car> findByCarName(@RequestParam String carName){
-        return this.carService.findByCarName(carName);
+    public ResponseEntity<?> findByCarName(@RequestParam String carName){
+        return new ResponseEntity<>(this.carService.findByCarName(carName), HttpStatus.OK);
     }
     @GetMapping("/findbydailyprice")
-    DataResult<List<Car>> findByDailyPrice(@RequestParam double dailyPrice){
-        return this.carService.findByDailyPrice(dailyPrice);
+    public ResponseEntity<?> findByDailyPrice(@RequestParam double dailyPrice){
+        return new ResponseEntity<>(this.carService.findByDailyPrice(dailyPrice), HttpStatus.OK);
     }
     @GetMapping("/findbymodelyear")
-    DataResult<List<Car>> findByModelYear(@RequestParam int modelYear){
-        return this.carService.findByModelYear(modelYear);
+    public ResponseEntity<?> findByModelYear(@RequestParam int modelYear){
+        return new ResponseEntity<>(this.carService.findByModelYear(modelYear), HttpStatus.OK);
     }
     @GetMapping("/findbydailypricelessthan")
-    DataResult<List<Car>> findByDailyPriceLessThan(@RequestParam double dailyPrice){
-        return this.carService.findByDailyPriceLessThan(dailyPrice);
+    public ResponseEntity<?> findByDailyPriceLessThan(@RequestParam double dailyPrice){
+        return new ResponseEntity<>(this.carService.findByDailyPriceLessThan(dailyPrice), HttpStatus.OK);
     }
     @GetMapping("/findbydailypricegreaterthan")
-    DataResult<List<Car>> findByDailyPriceGreaterThan(@RequestParam double dailyPrice){
-        return this.carService.findByDailyPriceGreaterThan(dailyPrice);
+    public ResponseEntity<?> findByDailyPriceGreaterThan(@RequestParam double dailyPrice){
+        return new ResponseEntity<>(this.carService.findByDailyPriceGreaterThan(dailyPrice), HttpStatus.OK);
     }
     @GetMapping("/findbydailypricebetween")
-    DataResult<List<Car>> findByDailyPriceBetween(@RequestParam double startDailyPrice,@RequestParam double endDailyPrice){
-        return this.carService.findByDailyPriceBetween(startDailyPrice, endDailyPrice);
+    public ResponseEntity<?> findByDailyPriceBetween(@RequestParam double startDailyPrice,@RequestParam double endDailyPrice){
+        return new ResponseEntity<>(this.carService.findByDailyPriceBetween(startDailyPrice, endDailyPrice), HttpStatus.OK);
     }
     @GetMapping("/findbymodelyearlessthan")
-    DataResult<List<Car>> findByModelYearLessThan(@RequestParam int modelYear){
-        return this.carService.findByModelYearLessThan(modelYear);
+    public ResponseEntity<?> findByModelYearLessThan(@RequestParam int modelYear){
+        return new ResponseEntity<>(this.carService.findByModelYearLessThan(modelYear), HttpStatus.OK);
     }
     @GetMapping("/findbymodelyeargreaterthan")
-    DataResult<List<Car>> findByModelYearGreaterThan(@RequestParam int modelYear){
-        return this.carService.findByModelYearGreaterThan(modelYear);
+    public ResponseEntity<?> findByModelYearGreaterThan(@RequestParam int modelYear){
+        return new ResponseEntity<>(this.carService.findByModelYearGreaterThan(modelYear), HttpStatus.OK);
     }
     @GetMapping("/findbymodelyearbetween")
-    DataResult<List<Car>> findByModelYearBetween(@RequestParam int startModelYear,@RequestParam int endModelYear){
-        return this.carService.findByModelYearBetween(startModelYear, endModelYear);
+    public ResponseEntity<?> findByModelYearBetween(@RequestParam int startModelYear,@RequestParam int endModelYear){
+        return new ResponseEntity<>(this.carService.findByModelYearBetween(startModelYear, endModelYear), HttpStatus.OK);
     }
     @GetMapping("/findbydescriptioncontaining")
-    DataResult<List<Car>> findByDescriptionContaining(@RequestParam String infix){
-        return this.carService.findByDescriptionContaining(infix);
+    public ResponseEntity<?> findByDescriptionContaining(@RequestParam String infix){
+        return new ResponseEntity<>(this.carService.findByDescriptionContaining(infix), HttpStatus.OK);
     }
     @GetMapping("/findbybrand")
-    DataResult<List<Car>>  findByBrand(@RequestParam int brandId){
-        return this.carService.findByBrand(brandId);
+    public ResponseEntity<?>  findByBrand(@RequestParam int brandId){
+        return new ResponseEntity<>(this.carService.findByBrand(brandId), HttpStatus.OK);
     }
     @GetMapping("/findbycolor")
-    DataResult<List<Car>> findByColor(@RequestParam int colorId){
-        return this.carService.findByColor(colorId);
+    public ResponseEntity<?> findByColor(@RequestParam int colorId){
+        return new ResponseEntity<>(this.carService.findByColor(colorId), HttpStatus.OK);
     }
     @GetMapping("/getallbypage")
-    DataResult<List<Car>> getAll(int pageNo, int pageSize){
-        return this.carService.getAll(pageNo, pageSize);
+    public ResponseEntity<?> getAll(int pageNo, int pageSize){
+        return new ResponseEntity<>(this.carService.getAll(pageNo, pageSize), HttpStatus.OK);
     }
     @GetMapping("/getallsortedbycarnameasc")
-    DataResult<List<Car>> getAllSortedByCarNameAsc(){
-        return this.carService.getAllSortedByCarNameAsc();
+    public ResponseEntity<?> getAllSortedByCarNameAsc(){
+        return new ResponseEntity<>(this.carService.getAllSortedByCarNameAsc(), HttpStatus.OK);
     }
     @GetMapping("/getallsortedbycarnamedesc")
-    DataResult<List<Car>> getAllSortedByCarNameDesc(){
-        return this.carService.getAllSortedByCarNameDesc();
+    public ResponseEntity<?> getAllSortedByCarNameDesc(){
+        return new ResponseEntity<>(this.carService.getAllSortedByCarNameDesc(), HttpStatus.OK);
     }
     @GetMapping("/getallsortedbydailypriceasc")
-    DataResult<List<Car>> getAllSortedByDailyPriceAsc(){
-        return this.carService.getAllSortedByDailyPriceAsc();
+    public ResponseEntity<?> getAllSortedByDailyPriceAsc(){
+        return new ResponseEntity<>(this.carService.getAllSortedByDailyPriceAsc(), HttpStatus.OK);
     }
     @GetMapping("/getallsortedbydailypricedesc")
-    DataResult<List<Car>> getAllSortedByDailyPriceDesc(){
-        return this.carService.getAllSortedByDailyPriceDesc();
+    public ResponseEntity<?> getAllSortedByDailyPriceDesc(){
+        return new ResponseEntity<>(this.carService.getAllSortedByDailyPriceDesc(), HttpStatus.OK);
     }
     @GetMapping("/getallsortedbymodelyearasc")
-    DataResult<List<Car>> getAllSortedByModelYearAsc(){
-        return this.carService.getAllSortedByModelYearAsc();
+    public ResponseEntity<?> getAllSortedByModelYearAsc(){
+        return new ResponseEntity<>(this.carService.getAllSortedByModelYearAsc(), HttpStatus.OK);
     }
     @GetMapping("/getallsortedbymodelyeardesc")
-    DataResult<List<Car>> getAllSortedByModelYearDesc(){
-        return this.carService.getAllSortedByModelYearDesc();
+    public ResponseEntity<?> getAllSortedByModelYearDesc(){
+        return new ResponseEntity<>(this.carService.getAllSortedByModelYearDesc(), HttpStatus.OK);
     }
     @GetMapping("getcarwithbranddetails")
-    DataResult<List<CarWithBrandDto>> getCarWithBrandDetails(){
-        return this.carService.getCarWithBrandDetails();
+    public ResponseEntity<?> getCarWithBrandDetails(){
+        return new ResponseEntity<>(this.carService.getCarWithBrandDetails(), HttpStatus.OK);
     }
     @GetMapping("getcarwithcolordetails")
-    DataResult<List<CarWithColorDto>> getCarWithColorDetails(){
-        return this.carService.getCarWithColorDetails();
+    public ResponseEntity<?> getCarWithColorDetails(){
+        return new ResponseEntity<>(this.carService.getCarWithColorDetails(), HttpStatus.OK);
     }
 }
