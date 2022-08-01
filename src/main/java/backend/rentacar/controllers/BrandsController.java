@@ -6,6 +6,8 @@ import backend.rentacar.core.utilities.results.Result;
 import backend.rentacar.entities.concretes.Brand;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.NamedStoredProcedureQueries;
@@ -15,34 +17,34 @@ import java.util.List;
 @RequestMapping("/api/brands")
 public class BrandsController {
 
-    private BrandService brandService;
+    private final BrandService brandService;
     @Autowired
     public BrandsController(BrandService brandService) {
         this.brandService = brandService;
     }
 
     @GetMapping("/getall")
-    public DataResult<List<Brand>> getAll(){
-        return this.brandService.getAll();
+    public ResponseEntity<?> getAll(){
+        return new ResponseEntity<>(this.brandService.getAll(), HttpStatus.OK);
     }
     @PostMapping("/add")
-    public Result add(@RequestBody Brand brand){
-        return this.brandService.add(brand);
+    public ResponseEntity add(@RequestBody Brand brand){
+        return new ResponseEntity(this.brandService.add(brand),HttpStatus.CREATED);
     }
     @GetMapping("/findbybrandname")
-    public DataResult<Brand> findByBrandName(@RequestParam String brandName){
-        return this.brandService.findByBrandName(brandName);
+    public ResponseEntity<?> findByBrandName(@RequestParam String brandName){
+        return new ResponseEntity<>(this.brandService.findByBrandName(brandName), HttpStatus.OK);
     }
     @GetMapping("/findbybrandid")
-    public DataResult<Brand> findByBrandId(@RequestParam int brandId){
-        return this.brandService.findByBrandId(brandId);
+    public ResponseEntity<?> findByBrandId(@RequestParam int brandId){
+        return new ResponseEntity<>(this.brandService.findByBrandId(brandId), HttpStatus.OK);
     }
     @GetMapping("/getallbybrandnameasc")
-    DataResult<List<Brand>> getAllByBrandNameAsc(){
-        return this.brandService.getAllByBrandNameAsc();
+    public ResponseEntity<?> getAllByBrandNameAsc(){
+        return new ResponseEntity<>(this.brandService.getAllByBrandNameAsc(), HttpStatus.OK);
     }
     @GetMapping("/getallbybrandnamedesc")
-    DataResult<List<Brand>> getAllByBrandNameDesc(){
-        return this.brandService.getAllByBrandNameDesc();
+    public ResponseEntity<?> getAllByBrandNameDesc(){
+        return new ResponseEntity<>(this.brandService.getAllByBrandNameDesc(), HttpStatus.OK);
     }
 }

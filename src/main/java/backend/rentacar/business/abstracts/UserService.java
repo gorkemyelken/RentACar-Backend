@@ -7,7 +7,7 @@ import backend.rentacar.entities.concretes.User;
 import java.util.List;
 
 public interface UserService {
-    DataResult<List<User>> getall();
+    DataResult<List<User>> getAll();
     Result add(User user);
     DataResult<User> findByEmail(String email);
 }

@@ -7,15 +7,11 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import backend.rentacar.business.abstracts.UserService;
-import backend.rentacar.core.utilities.results.DataResult;
-import backend.rentacar.core.utilities.results.ErrorDataResult;
 import backend.rentacar.entities.concretes.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
-import org.springframework.validation.FieldError;
 import org.springframework.http.HttpStatus;
 
 @RestController
@@ -30,8 +26,8 @@ public class UsersController {
     }
 
     @GetMapping("/getall")
-    public ResponseEntity<?> getall(){
-        return new ResponseEntity<>(this.userService.getall(), HttpStatus.OK);
+    public ResponseEntity<?> getAll(){
+        return new ResponseEntity<>(this.userService.getAll(), HttpStatus.OK);
     }
     @PostMapping("/add")
     public ResponseEntity add(@Valid @RequestBody User user){
@@ -41,7 +37,4 @@ public class UsersController {
     public ResponseEntity<?> findByEmail(@RequestParam String email){
         return new ResponseEntity<>(this.userService.findByEmail(email), HttpStatus.OK);
     }
-
-
-
 }
