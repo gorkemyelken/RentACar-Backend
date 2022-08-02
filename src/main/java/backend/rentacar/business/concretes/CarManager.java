@@ -7,8 +7,6 @@ import backend.rentacar.core.utilities.results.SuccessDataResult;
 import backend.rentacar.core.utilities.results.SuccessResult;
 import backend.rentacar.repositories.abstracts.CarRepository;
 import backend.rentacar.entities.concretes.Car;
-import backend.rentacar.entities.dtos.CarWithBrandDto;
-import backend.rentacar.entities.dtos.CarWithColorDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -143,15 +141,5 @@ public class CarManager implements CarService {
     @Override
     public DataResult<List<Car>> findByColor(int colorId) {
         return new SuccessDataResult<List<Car>>(this.carRepository.findByColor_ColorId(colorId),"Cars matching the color entered are listed.");
-    }
-
-    @Override
-    public DataResult<List<CarWithBrandDto>> getCarWithBrandDetails() {
-        return new SuccessDataResult<List<CarWithBrandDto>>(this.carRepository.getCarWithBrandDetails(),"Cars listed with brand.");
-    }
-
-    @Override
-    public DataResult<List<CarWithColorDto>> getCarWithColorDetails() {
-        return new SuccessDataResult<List<CarWithColorDto>>(this.carRepository.getCarWithColorDetails(),"Cars listed with color.");
     }
 }

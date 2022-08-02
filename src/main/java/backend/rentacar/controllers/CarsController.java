@@ -108,12 +108,4 @@ public class CarsController {
     public ResponseEntity<?> getAllSortedByModelYearDesc(){
         return new ResponseEntity<>(this.carService.getAllSortedByModelYearDesc(), HttpStatus.OK);
     }
-    @GetMapping("getcarwithbranddetails")
-    public ResponseEntity<?> getCarWithBrandDetails(){
-        return new ResponseEntity<>(this.carService.getCarWithBrandDetails(), HttpStatus.OK);
-    }
-    @GetMapping("getcarwithcolordetails")
-    public ResponseEntity<?> getCarWithColorDetails(){
-        return new ResponseEntity<>(this.carService.getCarWithColorDetails(), HttpStatus.OK);
-    }
 }

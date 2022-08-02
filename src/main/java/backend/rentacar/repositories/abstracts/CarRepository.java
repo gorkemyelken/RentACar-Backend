@@ -1,10 +1,7 @@
 package backend.rentacar.repositories.abstracts;
 
 import backend.rentacar.entities.concretes.Car;
-import backend.rentacar.entities.dtos.CarWithBrandDto;
-import backend.rentacar.entities.dtos.CarWithColorDto;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -22,8 +19,4 @@ public interface CarRepository extends JpaRepository<Car,Integer> {
     List<Car> findByDescriptionContaining(String infix);
     List<Car> findByBrand_BrandId(int brandId);
     List<Car> findByColor_ColorId(int colorId);
-    @Query("select new backend.rentacar.entities.dtos.CarWithBrandDto(c.carId, c.carName, b.brandName) from Brand b inner join b.cars c")
-    List<CarWithBrandDto> getCarWithBrandDetails();
-    @Query("select new backend.rentacar.entities.dtos.CarWithColorDto(c.carId, c.carName, co.colorName) from Color co inner join co.cars c")
-    List<CarWithColorDto> getCarWithColorDetails();
 }
