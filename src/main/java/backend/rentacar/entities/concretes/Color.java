@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -22,7 +21,6 @@ public class Color {
     private int colorId;
 
     @Column(name="color_name")
-    @NotNull
     private String colorName;
 
     @OneToMany(mappedBy = "color")
