@@ -28,12 +28,10 @@ public class Car {
 
     @Column(name="daily_price")
     @NotNull
-    @NotBlank
     private double dailyPrice;
 
     @Column(name="model_year")
     @NotNull
-    @NotBlank
     private int modelYear;
 
     @Column(name="description")
