@@ -1,9 +1,5 @@
 package backend.rentacar.controllers;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import javax.validation.Valid;
 
 import backend.rentacar.business.abstracts.UserService;

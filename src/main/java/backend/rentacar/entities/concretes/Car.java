@@ -15,6 +15,7 @@ import java.util.List;
 @Table(name="cars")
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","carImages"})
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,4 +46,7 @@ public class Car {
     @ManyToOne()
     @JoinColumn(name="color_id")
     private Color color;
+
+    @OneToMany(mappedBy = "car")
+    private List<CarImage> carImages;
 }
