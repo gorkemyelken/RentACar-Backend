@@ -1,6 +1,7 @@
 package backend.rentacar;
 
 import backend.rentacar.core.utilities.results.ErrorDataResult;
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -33,6 +34,11 @@ public class RentacarApplication {
 				.select()
 				.apis(RequestHandlerSelectors.basePackage("backend.rentacar"))
 				.build();
+	}
+
+	@Bean
+	public ModelMapper getModelMapper() {
+		return new ModelMapper();
 	}
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)

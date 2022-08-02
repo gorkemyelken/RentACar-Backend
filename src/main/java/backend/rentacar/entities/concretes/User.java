@@ -15,19 +15,18 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Table(name="users")
 public class User {
+    public User(String email, String password){
+        this.email = email;
+        this.password = password;
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="user_id")
     private int userId;
 
     @Column(name="email")
-    @Email
-    @NotNull
-    @NotBlank
     private String email;
 
     @Column(name="password")
-    @NotNull
-    @NotBlank
     private String password;
 }

@@ -1,7 +1,7 @@
 package backend.rentacar.controllers;
 
 import backend.rentacar.business.abstracts.CarService;
-import backend.rentacar.entities.concretes.Car;
+import backend.rentacar.entities.dtos.cardto.CarCreateDto;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,8 +25,8 @@ public class CarsController {
         return new ResponseEntity<>(this.carService.getAll(), HttpStatus.OK);
     }
     @PostMapping("/add")
-    public ResponseEntity add(@Valid @RequestBody Car car){
-        return new ResponseEntity(this.carService.add(car), HttpStatus.CREATED);
+    public ResponseEntity<?> add(@Valid @RequestBody CarCreateDto carCreateDto){
+        return new ResponseEntity<>(this.carService.add(carCreateDto), HttpStatus.CREATED);
     }
     @GetMapping("/findbycarid")
     public ResponseEntity<?> findByCarId(@RequestParam int carId){

@@ -22,7 +22,6 @@ public class Brand {
     private int brandId;
 
     @Column(name="brand_name")
-    @NotNull
     private String brandName;
 
     @OneToMany(mappedBy = "brand")
