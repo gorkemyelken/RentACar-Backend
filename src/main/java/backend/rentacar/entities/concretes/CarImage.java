@@ -19,7 +19,6 @@ public class CarImage {
     private int carImageId;
 
     @Column(name="image_path")
-    @NotNull
     private String imagePath;
 
     @ManyToOne()

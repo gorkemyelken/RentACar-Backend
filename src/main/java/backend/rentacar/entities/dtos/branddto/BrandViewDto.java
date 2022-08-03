@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BrandViewDto {
     private String brandName;
-
     public static BrandViewDto of(Brand brand){
         return new BrandViewDto(brand.getBrandName());
     }
