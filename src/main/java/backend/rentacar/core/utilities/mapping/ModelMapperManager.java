@@ -7,7 +7,7 @@ import org.modelmapper.convention.MatchingStrategies;
 @Service
 public class ModelMapperManager implements ModelMapperService{
 
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
     public ModelMapperManager(ModelMapper modelMapper) {
         this.modelMapper = modelMapper;

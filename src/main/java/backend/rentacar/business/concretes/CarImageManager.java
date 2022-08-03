@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service
 public class CarImageManager implements CarImageService {
-    private CarImageRepository carImageRepository;
+    private final CarImageRepository carImageRepository;
 
     @Autowired
     public CarImageManager(CarImageRepository carImageRepository) {

@@ -1,7 +1,7 @@
 package backend.rentacar.core.utilities.results;
 
 public class Result {
-    private boolean success;
+    private final boolean success;
     private String message;
 
     public Result(boolean success) {

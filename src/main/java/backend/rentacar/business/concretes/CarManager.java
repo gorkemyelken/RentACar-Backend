@@ -20,8 +20,8 @@ import java.util.stream.Collectors;
 @Service
 public class CarManager implements CarService {
 
-    private CarRepository carRepository;
-    private ModelMapperService modelMapperService;
+    private final CarRepository carRepository;
+    private final ModelMapperService modelMapperService;
 
     @Autowired
     public CarManager(CarRepository carRepository, ModelMapperService modelMapperService) {

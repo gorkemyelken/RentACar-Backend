@@ -17,8 +17,8 @@ import java.util.stream.Collectors;
 @Service
 public class UserManager implements UserService {
 
-    private UserRepository userRepository;
-    private ModelMapperService modelMapperService;
+    private final UserRepository userRepository;
+    private final ModelMapperService modelMapperService;
 
     @Autowired
     public UserManager(UserRepository userRepository, ModelMapperService modelMapperService) {

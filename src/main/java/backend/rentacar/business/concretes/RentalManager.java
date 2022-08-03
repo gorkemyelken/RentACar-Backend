@@ -16,7 +16,7 @@ import java.util.List;
 @Service
 public class RentalManager implements RentalService {
 
-    private RentalRepository rentalRepository;
+    private final RentalRepository rentalRepository;
 
     @Autowired
     public RentalManager(RentalRepository rentalRepository) {

@@ -15,7 +15,7 @@ import java.util.List;
 
 @Service
 public class ColorManager implements ColorService {
-    private ColorRepository colorRepository;
+    private final ColorRepository colorRepository;
 
     @Autowired
     public ColorManager(ColorRepository colorRepository) {
