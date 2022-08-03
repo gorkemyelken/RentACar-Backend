@@ -3,6 +3,7 @@ package backend.rentacar.entities.dtos.carimagedto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.validation.constraints.NotNull;
 
@@ -11,5 +12,6 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class CarImageCreateDto {
     @NotNull
+    @UniqueElements
     private String imagePath;
 }

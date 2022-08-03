@@ -3,6 +3,7 @@ package backend.rentacar.entities.dtos.userdto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -16,6 +17,7 @@ public class UserUpdateDto {
     @NotNull
     @Email
     @NotBlank
+    @UniqueElements
     private String email;
 
     @NotNull

@@ -3,6 +3,7 @@ package backend.rentacar.entities.dtos.customerdto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -22,6 +23,7 @@ public class CustomerCreateDto {
 
     @NotNull
     @NotBlank
+    @UniqueElements
     private String nationalityNumber;
 
     @NotNull
@@ -30,6 +32,7 @@ public class CustomerCreateDto {
     @Email
     @NotNull
     @NotBlank
+    @UniqueElements
     private String email;
 
     @NotNull
