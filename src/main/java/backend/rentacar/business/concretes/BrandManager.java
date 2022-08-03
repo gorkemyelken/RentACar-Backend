@@ -1,10 +1,11 @@
 package backend.rentacar.business.concretes;
 
 import backend.rentacar.business.abstracts.BrandService;
+import backend.rentacar.core.utilities.mapping.ModelMapperService;
 import backend.rentacar.core.utilities.results.DataResult;
-import backend.rentacar.core.utilities.results.Result;
 import backend.rentacar.core.utilities.results.SuccessDataResult;
-import backend.rentacar.core.utilities.results.SuccessResult;
+import backend.rentacar.entities.dtos.branddto.BrandCreateDto;
+import backend.rentacar.entities.dtos.branddto.BrandViewDto;
 import backend.rentacar.repositories.abstracts.BrandRepository;
 import backend.rentacar.entities.concretes.Brand;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,47 +13,56 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class BrandManager implements BrandService {
 
     private final BrandRepository brandRepository;
+    private final ModelMapperService modelMapperService;
 
     @Autowired
-    public BrandManager(BrandRepository brandRepository) {
+    public BrandManager(BrandRepository brandRepository, ModelMapperService modelMapperService) {
         this.brandRepository = brandRepository;
+        this.modelMapperService = modelMapperService;
     }
 
     @Override
-    public DataResult<List<Brand>> getAll() {
-        return new SuccessDataResult<List<Brand>>(this.brandRepository.findAll(),"Brands listed.");
+    public DataResult<List<BrandViewDto>> getAll() {
+        List<Brand> brands = this.brandRepository.findAll();
+        List<BrandViewDto> result = brands.stream().map(brand -> this.modelMapperService.forDto().map(brand, BrandViewDto.class)).collect(Collectors.toList());
+        return new SuccessDataResult<>(result);
     }
 
     @Override
-    public DataResult<List<Brand>> getAllByBrandNameAsc() {
+    public DataResult<List<BrandViewDto>> getAllByBrandNameAsc() {
         Sort sort = Sort.by(Sort.Direction.ASC,"brandName");
-        return new SuccessDataResult<List<Brand>>(this.brandRepository.findAll(sort),"The brands were sorted in ascending alphabet of the brand name.");
-    }
+        List<Brand> brands = this.brandRepository.findAll(sort);
+        List<BrandViewDto> result = brands.stream().map(brand -> this.modelMapperService.forDto().map(brand, BrandViewDto.class)).collect(Collectors.toList());
+        return new SuccessDataResult<>(result);   }
 
     @Override
-    public DataResult<List<Brand>> getAllByBrandNameDesc() {
+    public DataResult<List<BrandViewDto>> getAllByBrandNameDesc() {
         Sort sort = Sort.by(Sort.Direction.DESC,"brandName");
-        return new SuccessDataResult<List<Brand>>(this.brandRepository.findAll(sort),"The brands were sorted in descending alphabet of the brand name.");
+        List<Brand> brands = this.brandRepository.findAll(sort);
+        List<BrandViewDto> result = brands.stream().map(brand -> this.modelMapperService.forDto().map(brand, BrandViewDto.class)).collect(Collectors.toList());
+        return new SuccessDataResult<>(result);    }
+
+    @Override
+    public DataResult<BrandViewDto> add(BrandCreateDto brandCreateDto) {
+        Brand brand = this.brandRepository.save(new Brand(brandCreateDto.getBrandName()));
+        return new SuccessDataResult<>(BrandViewDto.of(brand));
     }
 
     @Override
-    public Result add(Brand brand) {
-        this.brandRepository.save(brand);
-        return new SuccessResult("Brand added.");
-    }
+    public DataResult<BrandViewDto> findByBrandId(int brandId) {
+        Brand brand = this.brandRepository.findByBrandId(brandId);
+        BrandViewDto result = this.modelMapperService.forDto().map(brand, BrandViewDto.class);
+        return new SuccessDataResult<>(result);     }
 
     @Override
-    public DataResult<Brand> findByBrandId(int brandId) {
-        return new SuccessDataResult<Brand>(this.brandRepository.findByBrandId(brandId),"Brand listed by id.");
-    }
-
-    @Override
-    public DataResult<Brand> findByBrandName(String brandName) {
-        return new SuccessDataResult<Brand>(this.brandRepository.findByBrandName(brandName),"Brand listed by name.");
-    }
+    public DataResult<BrandViewDto> findByBrandName(String brandName) {
+        Brand brand = this.brandRepository.findByBrandName(brandName);
+        BrandViewDto result = this.modelMapperService.forDto().map(brand, BrandViewDto.class);
+        return new SuccessDataResult<>(result);    }
 }

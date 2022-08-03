@@ -15,6 +15,9 @@ import java.util.List;
 @NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler","cars"})
 public class Brand {
+    public Brand(String brandName){
+        this.brandName = brandName;
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="brand_id")
