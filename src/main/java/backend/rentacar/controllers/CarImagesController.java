@@ -2,6 +2,7 @@ package backend.rentacar.controllers;
 
 import backend.rentacar.business.abstracts.CarImageService;
 import backend.rentacar.entities.concretes.CarImage;
+import backend.rentacar.entities.dtos.carimagedto.CarImageCreateDto;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,7 +31,7 @@ public class CarImagesController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity add(@Valid @RequestBody CarImage carImage){
-        return new ResponseEntity(this.carImageService.add(carImage), HttpStatus.CREATED);
+    public ResponseEntity<?> add(@Valid @RequestBody CarImageCreateDto carImageCreateDto){
+        return new ResponseEntity(this.carImageService.add(carImageCreateDto), HttpStatus.CREATED);
     }
 }

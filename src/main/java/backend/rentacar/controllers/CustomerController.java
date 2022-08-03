@@ -2,6 +2,7 @@ package backend.rentacar.controllers;
 
 import backend.rentacar.business.abstracts.CustomerService;
 import backend.rentacar.entities.concretes.Customer;
+import backend.rentacar.entities.dtos.customerdto.CustomerCreateDto;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,8 +29,8 @@ public class CustomerController {
         return new ResponseEntity<>(this.customerService.getall(), HttpStatus.OK);
     }
     @PostMapping("/add")
-    public ResponseEntity add(@Valid @RequestBody Customer customer){
+    public ResponseEntity add(@Valid @RequestBody CustomerCreateDto customerCreateDto){
 
-        return new ResponseEntity(this.customerService.add(customer), HttpStatus.CREATED);
+        return new ResponseEntity(this.customerService.add(customerCreateDto), HttpStatus.CREATED);
     }
 }
