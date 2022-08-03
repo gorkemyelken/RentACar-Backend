@@ -1,7 +1,6 @@
 package backend.rentacar.controllers;
 
 import backend.rentacar.business.abstracts.CarImageService;
-import backend.rentacar.entities.concretes.CarImage;
 import backend.rentacar.entities.dtos.carimagedto.CarImageCreateDto;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;

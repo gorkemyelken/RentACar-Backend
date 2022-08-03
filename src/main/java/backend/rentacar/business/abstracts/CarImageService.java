@@ -1,8 +1,6 @@
 package backend.rentacar.business.abstracts;
 
 import backend.rentacar.core.utilities.results.DataResult;
-import backend.rentacar.core.utilities.results.Result;
-import backend.rentacar.entities.concretes.CarImage;
 import backend.rentacar.entities.dtos.carimagedto.CarImageCreateDto;
 import backend.rentacar.entities.dtos.carimagedto.CarImageViewDto;
 

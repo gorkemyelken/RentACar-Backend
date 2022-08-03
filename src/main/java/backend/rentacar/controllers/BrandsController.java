@@ -1,7 +1,6 @@
 package backend.rentacar.controllers;
 
 import backend.rentacar.business.abstracts.BrandService;
-import backend.rentacar.entities.concretes.Brand;
 import backend.rentacar.entities.dtos.branddto.BrandCreateDto;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;

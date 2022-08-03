@@ -1,7 +1,7 @@
 package backend.rentacar.entities.dtos.cardto;
 
 import backend.rentacar.entities.concretes.Brand;
-import backend.rentacar.entities.concretes.CarImage;
+import backend.rentacar.entities.concretes.Car;
 import backend.rentacar.entities.concretes.Color;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,7 +23,7 @@ public class CarViewDto {
 
     private Color color;
 
-    public static CarViewDto of(CarImage car){
+    public static CarViewDto of(Car car){
         return new CarViewDto(car.getCarName(),car.getDailyPrice(),car.getModelYear(),car.getDescription(),car.getBrand(),car.getColor());
     }
 }

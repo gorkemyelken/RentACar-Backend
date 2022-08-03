@@ -1,7 +1,6 @@
 package backend.rentacar.controllers;
 
 import backend.rentacar.business.abstracts.ColorService;
-import backend.rentacar.entities.concretes.Color;
 import backend.rentacar.entities.dtos.colordto.ColorCreateDto;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;

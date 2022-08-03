@@ -1,8 +1,6 @@
 package backend.rentacar.business.abstracts;
 
 import backend.rentacar.core.utilities.results.DataResult;
-import backend.rentacar.core.utilities.results.Result;
-import backend.rentacar.entities.concretes.Color;
 import backend.rentacar.entities.dtos.colordto.ColorCreateDto;
 import backend.rentacar.entities.dtos.colordto.ColorViewDto;
 
