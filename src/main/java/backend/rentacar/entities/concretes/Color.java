@@ -15,6 +15,9 @@ import java.util.List;
 @NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler","cars"})
 public class Color {
+    public Color(String colorName){
+        this.colorName = colorName;
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="color_id")

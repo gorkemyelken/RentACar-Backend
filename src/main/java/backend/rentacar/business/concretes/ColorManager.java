@@ -1,10 +1,11 @@
 package backend.rentacar.business.concretes;
 
 import backend.rentacar.business.abstracts.ColorService;
+import backend.rentacar.core.utilities.mapping.ModelMapperService;
 import backend.rentacar.core.utilities.results.DataResult;
-import backend.rentacar.core.utilities.results.Result;
 import backend.rentacar.core.utilities.results.SuccessDataResult;
-import backend.rentacar.core.utilities.results.SuccessResult;
+import backend.rentacar.entities.dtos.colordto.ColorCreateDto;
+import backend.rentacar.entities.dtos.colordto.ColorViewDto;
 import backend.rentacar.repositories.abstracts.ColorRepository;
 import backend.rentacar.entities.concretes.Color;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,47 +13,55 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ColorManager implements ColorService {
     private final ColorRepository colorRepository;
+    private final ModelMapperService modelMapperService;
 
     @Autowired
-    public ColorManager(ColorRepository colorRepository) {
+    public ColorManager(ColorRepository colorRepository, ModelMapperService modelMapperService) {
         this.colorRepository = colorRepository;
+        this.modelMapperService = modelMapperService;
     }
 
     @Override
-    public DataResult<List<Color>> getAll() {
-
-        return new SuccessDataResult<List<Color>>(this.colorRepository.findAll(),"Colors listed.");
+    public DataResult<List<ColorViewDto>> getAll() {
+        List<Color> colors = this.colorRepository.findAll();
+        List<ColorViewDto> result = colors.stream().map(color -> this.modelMapperService.forDto().map(color, ColorViewDto.class)).collect(Collectors.toList());
+        return new SuccessDataResult<>(result);
     }
 
     @Override
-    public DataResult<List<Color>> getAllByColorNameAsc() {
+    public DataResult<List<ColorViewDto>> getAllByColorNameAsc() {
         Sort sort = Sort.by(Sort.Direction.ASC,"colorName");
-        return new SuccessDataResult<List<Color>>(this.colorRepository.findAll(sort),"The colors were sorted in ascending alphabet of the color name.");
-    }
+        List<Color> colors = this.colorRepository.findAll(sort);
+        List<ColorViewDto> result = colors.stream().map(color -> this.modelMapperService.forDto().map(color, ColorViewDto.class)).collect(Collectors.toList());
+        return new SuccessDataResult<>(result);  }
 
     @Override
-    public DataResult<List<Color>> getAllByColorNameDesc() {
+    public DataResult<List<ColorViewDto>> getAllByColorNameDesc() {
         Sort sort = Sort.by(Sort.Direction.DESC,"colorName");
-        return new SuccessDataResult<List<Color>>(this.colorRepository.findAll(sort),"The colors were sorted in descending alphabet of the color name.");
+        List<Color> colors = this.colorRepository.findAll(sort);
+        List<ColorViewDto> result = colors.stream().map(color -> this.modelMapperService.forDto().map(color, ColorViewDto.class)).collect(Collectors.toList());
+        return new SuccessDataResult<>(result);  }
+
+    @Override
+    public DataResult<ColorViewDto> add(ColorCreateDto colorCreateDto) {
+        Color color = this.colorRepository.save(new Color(colorCreateDto.getColorName()));
+        return new SuccessDataResult<>(ColorViewDto.of(color));
     }
 
     @Override
-    public Result add(Color color) {
-        this.colorRepository.save(color);
-        return new SuccessResult("Color added.");
-    }
+    public DataResult<ColorViewDto> findByColorId(int colorId) {
+        Color color = this.colorRepository.findByColorId(colorId);
+        ColorViewDto result = this.modelMapperService.forDto().map(color, ColorViewDto.class);
+        return new SuccessDataResult<>(result);  }
 
     @Override
-    public DataResult<Color> findByColorId(int colorId) {
-        return new SuccessDataResult<Color>(this.colorRepository.findByColorId(colorId),"Color listed by id.");
-    }
-
-    @Override
-    public DataResult<Color> findByColorName(String colorName) {
-        return new SuccessDataResult<Color>(this.colorRepository.findByColorName(colorName),"Color listed by name.");
-    }
+    public DataResult<ColorViewDto> findByColorName(String colorName) {
+        Color color = this.colorRepository.findByColorName(colorName);
+        ColorViewDto result = this.modelMapperService.forDto().map(color, ColorViewDto.class);
+        return new SuccessDataResult<>(result);  }
 }
