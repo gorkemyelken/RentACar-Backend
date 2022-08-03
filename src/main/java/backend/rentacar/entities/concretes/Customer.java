@@ -15,6 +15,15 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "customers")
 public class Customer{
+    public Customer(String firstName, String lastName, String nationalityNumber, int birthYear, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.nationalityNumber = nationalityNumber;
+        this.birthYear = birthYear;
+        this.email = email;
+        this.password = password;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="customer_id")
