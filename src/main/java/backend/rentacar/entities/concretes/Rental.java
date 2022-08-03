@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
 @Data
@@ -12,6 +13,12 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Rental {
+    public Rental(Car car, Customer customer, Date rentDate, Date returnDate) {
+        this.car = car;
+        this.customer = customer;
+        this.rentDate = rentDate;
+        this.returnDate = returnDate;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface RentalService {
     DataResult<List<RentalViewDto>> getAll();
-    DataResult<RentalViewDto> findByRentalId(int rental_id);
+    DataResult<RentalViewDto> findByRentalId(int rentalId);
     DataResult<RentalViewDto> add(RentalCreateDto rentalCreateDto);
     DataResult<List<RentalViewDto>> getAllByRentDateAsc();
     DataResult<List<RentalViewDto>> getAllByRentDateDesc();

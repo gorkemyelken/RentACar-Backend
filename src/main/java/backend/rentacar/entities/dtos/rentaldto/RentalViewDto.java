@@ -19,7 +19,7 @@ public class RentalViewDto {
 
     private java.sql.Date returnDate;
 
-    private static RentalViewDto of(Rental rental){
+    public static RentalViewDto of(Rental rental){
         return new RentalViewDto(rental.getCar(), rental.getCustomer(),rental.getRentDate(), rental.getReturnDate());
     }
 }

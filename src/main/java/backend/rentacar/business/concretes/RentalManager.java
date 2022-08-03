@@ -1,10 +1,11 @@
 package backend.rentacar.business.concretes;
 
 import backend.rentacar.business.abstracts.RentalService;
+import backend.rentacar.core.utilities.mapping.ModelMapperService;
 import backend.rentacar.core.utilities.results.DataResult;
-import backend.rentacar.core.utilities.results.Result;
 import backend.rentacar.core.utilities.results.SuccessDataResult;
-import backend.rentacar.core.utilities.results.SuccessResult;
+import backend.rentacar.entities.dtos.rentaldto.RentalCreateDto;
+import backend.rentacar.entities.dtos.rentaldto.RentalViewDto;
 import backend.rentacar.repositories.abstracts.RentalRepository;
 import backend.rentacar.entities.concretes.Rental;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,54 +13,63 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RentalManager implements RentalService {
 
     private final RentalRepository rentalRepository;
+    private final ModelMapperService modelMapperService;
 
     @Autowired
-    public RentalManager(RentalRepository rentalRepository) {
+    public RentalManager(RentalRepository rentalRepository, ModelMapperService modelMapperService) {
         this.rentalRepository = rentalRepository;
+        this.modelMapperService = modelMapperService;
     }
 
     @Override
-    public DataResult<List<Rental>> getAll() {
-        return new SuccessDataResult<List<Rental>>(this.rentalRepository.findAll(),"Rentals listed.");
+    public DataResult<List<RentalViewDto>> getAll() {
+        List<Rental> rentals = this.rentalRepository.findAll();
+        List<RentalViewDto> result = rentals.stream().map(rental -> this.modelMapperService.forDto().map(rental, RentalViewDto.class)).collect(Collectors.toList());
+        return new SuccessDataResult<>(result);   }
+
+    @Override
+    public DataResult<RentalViewDto> findByRentalId(int rentalId) {
+        Rental rental = this.rentalRepository.findByRentalId(rentalId);
+        RentalViewDto result = this.modelMapperService.forDto().map(rental, RentalViewDto.class);
+        return new SuccessDataResult<>(result);     }
+
+    @Override
+    public DataResult<RentalViewDto> add(RentalCreateDto rentalCreateDto) {
+        Rental rental = this.rentalRepository.save(new Rental(rentalCreateDto.getCar(),rentalCreateDto.getCustomer(),rentalCreateDto.getRentDate(),rentalCreateDto.getReturnDate()));
+        return new SuccessDataResult<>(RentalViewDto.of(rental));
     }
 
     @Override
-    public DataResult<Rental> findByRentalId(int rental_id) {
-        return new SuccessDataResult<Rental>(this.rentalRepository.findByRentalId(rental_id),"Rental listed by id.");
-    }
-
-    @Override
-    public Result add(Rental rental) {
-        this.rentalRepository.save(rental);
-        return new SuccessResult("Rental added.");
-    }
-
-    @Override
-    public DataResult<List<Rental>> getAllByRentDateAsc() {
+    public DataResult<List<RentalViewDto>> getAllByRentDateAsc() {
         Sort sort = Sort.by(Sort.Direction.ASC,"rentDate");
-        return new SuccessDataResult<List<Rental>>(this.rentalRepository.findAll(sort),"The rentals were sorted in ascending of the rent date.");
-    }
+        List<Rental> rentals = this.rentalRepository.findAll(sort);
+        List<RentalViewDto> result = rentals.stream().map(rental -> this.modelMapperService.forDto().map(rental, RentalViewDto.class)).collect(Collectors.toList());
+        return new SuccessDataResult<>(result);  }
 
     @Override
-    public DataResult<List<Rental>> getAllByRentDateDesc() {
+    public DataResult<List<RentalViewDto>> getAllByRentDateDesc() {
         Sort sort = Sort.by(Sort.Direction.DESC,"rentDate");
-        return new SuccessDataResult<List<Rental>>(this.rentalRepository.findAll(sort),"The rentals were sorted in descending of the rent date.");
-    }
+        List<Rental> rentals = this.rentalRepository.findAll(sort);
+        List<RentalViewDto> result = rentals.stream().map(rental -> this.modelMapperService.forDto().map(rental, RentalViewDto.class)).collect(Collectors.toList());
+        return new SuccessDataResult<>(result);    }
 
     @Override
-    public DataResult<List<Rental>> getAllByReturnDateAsc() {
+    public DataResult<List<RentalViewDto>> getAllByReturnDateAsc() {
         Sort sort = Sort.by(Sort.Direction.ASC,"returnDate");
-        return new SuccessDataResult<List<Rental>>(this.rentalRepository.findAll(sort),"The rentals were sorted in ascending of the return date.");
-    }
+        List<Rental> rentals = this.rentalRepository.findAll(sort);
+        List<RentalViewDto> result = rentals.stream().map(rental -> this.modelMapperService.forDto().map(rental, RentalViewDto.class)).collect(Collectors.toList());
+        return new SuccessDataResult<>(result);    }
 
     @Override
-    public DataResult<List<Rental>> getAllByReturnDateDesc() {
+    public DataResult<List<RentalViewDto>> getAllByReturnDateDesc() {
         Sort sort = Sort.by(Sort.Direction.DESC,"returnDate");
-        return new SuccessDataResult<List<Rental>>(this.rentalRepository.findAll(sort),"The rentals were sorted in descending of the return date.");
-    }
+        List<Rental> rentals = this.rentalRepository.findAll(sort);
+        List<RentalViewDto> result = rentals.stream().map(rental -> this.modelMapperService.forDto().map(rental, RentalViewDto.class)).collect(Collectors.toList());
+        return new SuccessDataResult<>(result);    }
 }
