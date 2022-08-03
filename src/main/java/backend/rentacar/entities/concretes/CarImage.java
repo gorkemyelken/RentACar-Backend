@@ -13,6 +13,9 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CarImage {
+    public CarImage(String imagePath){
+        this.imagePath = imagePath;
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="car_image_id")
