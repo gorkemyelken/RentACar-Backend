@@ -55,8 +55,13 @@ public class BrandManager implements BrandService {
 
     @Override
     public DataResult<BrandViewDto> add(BrandCreateDto brandCreateDto) {
-        Brand brand = this.brandRepository.save(new Brand(brandCreateDto.getBrandName()));
-        return new SuccessDataResult<>(BrandViewDto.of(brand), Messages.GlobalMessages.DATA_ADDED);
+        if(checkIfBrandNameExists(brandCreateDto.getBrandName())){
+            return new ErrorDataResult<>(Messages.BrandMessages.BRAND_NAME_ALREADY_EXIST);
+        }
+        else{
+            Brand brand = this.brandRepository.save(new Brand(brandCreateDto.getBrandName()));
+            return new SuccessDataResult<>(BrandViewDto.of(brand), Messages.GlobalMessages.DATA_ADDED);
+        }
     }
 
     @Override
@@ -99,6 +104,13 @@ public class BrandManager implements BrandService {
 
     private boolean checkIfBrandIdExists(int brandId) {
         if(this.brandRepository.existsByBrandId(brandId)){
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkIfBrandNameExists(String brandName) {
+        if(this.brandRepository.existsByBrandName(brandName)){
             return true;
         }
         return false;
