@@ -37,4 +37,11 @@ public class Messages {
         public static final String CAR_LISTED_BY_BRAND = "Cars listed by brand.";
         public static final String CAR_LISTED_BY_COLOR = "Cars listed by color.";
     }
+
+    public class ColorMessages{
+        public static final String COLOR_LISTED_BY_COLOR_NAME_ASC = "Colors listed by color name in ascending order.";
+        public static final String COLOR_LISTED_BY_COLOR_NAME_DESC = "Colors listed by color name in descending order.";
+        public static final String COLOR_LISTED_BY_COLOR_ID = "Colors listed by color id.";
+        public static final String COLOR_LISTED_BY_COLOR_NAME = "Colors listed by color name.";
+    }
 }
