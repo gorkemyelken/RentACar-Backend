@@ -19,4 +19,6 @@ public interface CarRepository extends JpaRepository<Car,Integer> {
     List<Car> findByDescriptionContaining(String infix);
     List<Car> findByBrand_BrandId(int brandId);
     List<Car> findByColor_ColorId(int colorId);
+    boolean existsByCarId(int carId);
+    boolean existsByCarName(String carName);
 }
