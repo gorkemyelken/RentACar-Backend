@@ -72,6 +72,12 @@
 		</dependency>
 	</dependencies>
 
+	<developers>
+		<developer>
+			<name>Görkem Yelken</name>
+		</developer>
+	</developers>
+
 	<build>
 		<plugins>
 			<plugin>
