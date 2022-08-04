@@ -1,5 +1,7 @@
 package backend.rentacar.business.constants;
 
+import backend.rentacar.entities.dtos.userdto.UserViewDto;
+
 public class Messages {
     public class GlobalMessages{
         public static final String DATA_LISTED = "Data listed successfully.";
@@ -50,6 +52,9 @@ public class Messages {
     }
     public class UserMessages{
         public static final String USER_LISTED_BY_EMAIL = "User listed by email.";
+        public static final String USER_EMAIL_ALREADY_EXIST = "Email already exist.";
+        public static final String USER_ID_NOT_FOUND = "User id not found.";
+        public static final String USER_EMAIL_NOT_FOUND = "User email not found.";
     }
 }
 

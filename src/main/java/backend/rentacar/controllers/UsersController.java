@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import backend.rentacar.business.abstracts.UserService;
 import backend.rentacar.entities.dtos.userdto.UserCreateDto;
+import backend.rentacar.entities.dtos.userdto.UserUpdateDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,4 +37,13 @@ public class UsersController {
         return new ResponseEntity<>(this.userService.add(userCreateDTO), HttpStatus.CREATED);
     }
 
+    @PutMapping("/update")
+    public ResponseEntity<?> update(@RequestParam int userId, @Valid @RequestBody UserUpdateDto userUpdateDto){
+        return new ResponseEntity<>(this.userService.update(userId, userUpdateDto), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> delete(@RequestParam int userId){
+        return new ResponseEntity<>(this.userService.delete(userId), HttpStatus.OK);
+    }
 }

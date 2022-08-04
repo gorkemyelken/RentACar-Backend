@@ -4,8 +4,10 @@ import backend.rentacar.business.abstracts.UserService;
 import backend.rentacar.business.constants.Messages;
 import backend.rentacar.core.utilities.mapping.ModelMapperService;
 import backend.rentacar.core.utilities.results.DataResult;
+import backend.rentacar.core.utilities.results.ErrorDataResult;
 import backend.rentacar.core.utilities.results.SuccessDataResult;
 import backend.rentacar.entities.dtos.userdto.UserCreateDto;
+import backend.rentacar.entities.dtos.userdto.UserUpdateDto;
 import backend.rentacar.entities.dtos.userdto.UserViewDto;
 import backend.rentacar.repositories.abstracts.UserRepository;
 import backend.rentacar.entities.concretes.User;
@@ -35,9 +37,14 @@ public class UserManager implements UserService {
     }
 
     @Override
-    public DataResult<UserViewDto> add(UserCreateDto userCreateDTO) {
-        User user = this.userRepository.save(new User(userCreateDTO.getEmail(),userCreateDTO.getPassword()));
-        return new SuccessDataResult<>(UserViewDto.of(user), Messages.GlobalMessages.DATA_ADDED);
+    public DataResult<UserViewDto> add(UserCreateDto userCreateDto) {
+        if(checkIfUserEmailExists(userCreateDto.getEmail())){
+            return new ErrorDataResult<>(Messages.UserMessages.USER_EMAIL_ALREADY_EXIST);
+        }
+        else{
+            User user = this.userRepository.save(new User(userCreateDto.getEmail(),userCreateDto.getPassword()));
+            return new SuccessDataResult<>(UserViewDto.of(user), Messages.GlobalMessages.DATA_ADDED);
+        }
     }
 
     @Override
@@ -45,5 +52,45 @@ public class UserManager implements UserService {
         User user = this.userRepository.findByEmail(email);
         UserViewDto result = this.modelMapperService.forDto().map(user, UserViewDto.class);
         return new SuccessDataResult<>(result, Messages.UserMessages.USER_LISTED_BY_EMAIL);
+    }
+
+    @Override
+    public DataResult<UserViewDto> update(int userId, UserUpdateDto userUpdateDto) {
+        if(!checkIfUserIdExists(userId)){
+            return new ErrorDataResult<>(Messages.UserMessages.USER_ID_NOT_FOUND);
+        }
+        else{
+            User user = this.userRepository.findByUserId(userId);
+            user.setEmail(userUpdateDto.getEmail());
+            user.setPassword(userUpdateDto.getPassword());
+            this.userRepository.save(user);
+            return new SuccessDataResult<>(UserViewDto.of(user), Messages.GlobalMessages.DATA_UPDATED);
+        }
+    }
+
+    @Override
+    public DataResult<UserViewDto> delete(int userId) {
+        if(!checkIfUserIdExists(userId)){
+            return new ErrorDataResult<>(Messages.UserMessages.USER_ID_NOT_FOUND);
+        }
+        else{
+            User user = this.userRepository.findByUserId(userId);
+            this.userRepository.deleteById(userId);
+            return new SuccessDataResult<>(UserViewDto.of(user), Messages.GlobalMessages.DATA_DELETED);
+        }
+    }
+
+    private boolean checkIfUserEmailExists(String email) {
+        if(this.userRepository.existsByEmail(email)){
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkIfUserIdExists(int userId) {
+        if(this.userRepository.existsByUserId(userId)){
+            return true;
+        }
+        return false;
     }
 }
