@@ -3,6 +3,7 @@ package backend.rentacar.business.constants;
 import backend.rentacar.entities.dtos.branddto.BrandViewDto;
 import backend.rentacar.entities.dtos.cardto.CarViewDto;
 import backend.rentacar.entities.dtos.carimagedto.CarImageViewDto;
+import backend.rentacar.entities.dtos.colordto.ColorViewDto;
 import backend.rentacar.entities.dtos.userdto.UserViewDto;
 
 public class Messages {
@@ -48,6 +49,8 @@ public class Messages {
         public static final String COLOR_LISTED_BY_COLOR_NAME_DESC = "Colors listed by color name in descending order.";
         public static final String COLOR_LISTED_BY_COLOR_ID = "Color listed by color id.";
         public static final String COLOR_LISTED_BY_COLOR_NAME = "Colors listed by color name.";
+        public static final String COLOR_NAME_ALREADY_EXIST = "Color name already exist.";
+        public static final String COLOR_ID_NOT_FOUND = "Color id not found.";
     }
     public class RentalMessages{
 

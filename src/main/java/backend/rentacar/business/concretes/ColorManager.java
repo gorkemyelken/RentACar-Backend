@@ -4,9 +4,13 @@ import backend.rentacar.business.abstracts.ColorService;
 import backend.rentacar.business.constants.Messages;
 import backend.rentacar.core.utilities.mapping.ModelMapperService;
 import backend.rentacar.core.utilities.results.DataResult;
+import backend.rentacar.core.utilities.results.ErrorDataResult;
 import backend.rentacar.core.utilities.results.SuccessDataResult;
+import backend.rentacar.entities.concretes.User;
 import backend.rentacar.entities.dtos.colordto.ColorCreateDto;
+import backend.rentacar.entities.dtos.colordto.ColorUpdateDto;
 import backend.rentacar.entities.dtos.colordto.ColorViewDto;
+import backend.rentacar.entities.dtos.userdto.UserViewDto;
 import backend.rentacar.repositories.abstracts.ColorRepository;
 import backend.rentacar.entities.concretes.Color;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,8 +54,37 @@ public class ColorManager implements ColorService {
 
     @Override
     public DataResult<ColorViewDto> add(ColorCreateDto colorCreateDto) {
+        if(checkIfColorNameExists(colorCreateDto.getColorName())){
+            return new ErrorDataResult<>(Messages.ColorMessages.COLOR_NAME_ALREADY_EXIST);
+        }
+        else{
         Color color = this.colorRepository.save(new Color(colorCreateDto.getColorName()));
-        return new SuccessDataResult<>(ColorViewDto.of(color), Messages.GlobalMessages.DATA_ADDED);
+        return new SuccessDataResult<>(ColorViewDto.of(color), Messages.GlobalMessages.DATA_ADDED);}
+    }
+
+    @Override
+    public DataResult<ColorViewDto> update(int colorId, ColorUpdateDto colorUpdateDto) {
+        if(!checkIfColorIdExists(colorId)){
+            return new ErrorDataResult<>(Messages.ColorMessages.COLOR_ID_NOT_FOUND);
+        }
+        else{
+            Color color = this.colorRepository.findByColorId(colorId);
+            color.setColorName(colorUpdateDto.getColorName());
+            this.colorRepository.save(color);
+            return new SuccessDataResult<>(ColorViewDto.of(color), Messages.GlobalMessages.DATA_UPDATED);
+        }
+    }
+
+    @Override
+    public DataResult<ColorViewDto> delete(int colorId) {
+        if(!checkIfColorIdExists(colorId)){
+            return new ErrorDataResult<>(Messages.ColorMessages.COLOR_ID_NOT_FOUND);
+        }
+        else{
+            Color color = this.colorRepository.findByColorId(colorId);
+            this.colorRepository.deleteById(colorId);
+            return new SuccessDataResult<>(ColorViewDto.of(color), Messages.GlobalMessages.DATA_DELETED);
+        }
     }
 
     @Override
@@ -65,4 +98,17 @@ public class ColorManager implements ColorService {
         Color color = this.colorRepository.findByColorName(colorName);
         ColorViewDto result = this.modelMapperService.forDto().map(color, ColorViewDto.class);
         return new SuccessDataResult<>(result, Messages.ColorMessages.COLOR_LISTED_BY_COLOR_NAME);  }
+
+    private boolean checkIfColorNameExists(String colorName) {
+        if(this.colorRepository.existsByColorName(colorName)){
+            return true;
+        }
+        return false;
+    }
+    private boolean checkIfColorIdExists(int colorId) {
+        if(this.colorRepository.existsByColorId(colorId)){
+            return true;
+        }
+        return false;
+    }
 }
