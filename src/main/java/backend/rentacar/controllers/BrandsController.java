@@ -2,6 +2,10 @@ package backend.rentacar.controllers;
 
 import backend.rentacar.business.abstracts.BrandService;
 import backend.rentacar.entities.dtos.branddto.BrandCreateDto;
+import backend.rentacar.entities.dtos.branddto.BrandUpdateDto;
+import backend.rentacar.entities.dtos.rentaldto.RentalCreateDto;
+import backend.rentacar.entities.dtos.userdto.UserCreateDto;
+import backend.rentacar.entities.dtos.userdto.UserUpdateDto;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,5 +47,15 @@ public class BrandsController {
     @GetMapping("/getallbybrandnamedesc")
     public ResponseEntity<?> getAllByBrandNameDesc(){
         return new ResponseEntity<>(this.brandService.getAllByBrandNameDesc(), HttpStatus.OK);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<?> update(@RequestParam int brandId, @Valid @RequestBody BrandUpdateDto brandUpdateDto){
+        return new ResponseEntity<>(this.brandService.update(brandId, brandUpdateDto), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> delete(@RequestParam int brandId){
+        return new ResponseEntity<>(this.brandService.delete(brandId), HttpStatus.OK);
     }
 }
