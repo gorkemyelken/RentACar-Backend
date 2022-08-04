@@ -4,9 +4,13 @@ import backend.rentacar.business.abstracts.BrandService;
 import backend.rentacar.business.constants.Messages;
 import backend.rentacar.core.utilities.mapping.ModelMapperService;
 import backend.rentacar.core.utilities.results.DataResult;
+import backend.rentacar.core.utilities.results.ErrorDataResult;
 import backend.rentacar.core.utilities.results.SuccessDataResult;
+import backend.rentacar.entities.concretes.User;
 import backend.rentacar.entities.dtos.branddto.BrandCreateDto;
+import backend.rentacar.entities.dtos.branddto.BrandUpdateDto;
 import backend.rentacar.entities.dtos.branddto.BrandViewDto;
+import backend.rentacar.entities.dtos.userdto.UserViewDto;
 import backend.rentacar.repositories.abstracts.BrandRepository;
 import backend.rentacar.entities.concretes.Brand;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +60,31 @@ public class BrandManager implements BrandService {
     }
 
     @Override
+    public DataResult<BrandViewDto> update(int brandId, BrandUpdateDto brandUpdateDto) {
+        if(!checkIfBrandIdExists(brandId)){
+            return new ErrorDataResult<>(Messages.BrandMessages.BRAND_ID_NOT_FOUND);
+        }
+        else{
+            Brand brand = this.brandRepository.findByBrandId(brandId);
+            brand.setBrandName(brandUpdateDto.getBrandName());
+            this.brandRepository.save(brand);
+            return new SuccessDataResult<>(BrandViewDto.of(brand), Messages.GlobalMessages.DATA_UPDATED);
+        }
+    }
+
+    @Override
+    public DataResult<BrandViewDto> delete(int brandId) {
+        if(!checkIfBrandIdExists(brandId)){
+            return new ErrorDataResult<>(Messages.BrandMessages.BRAND_ID_NOT_FOUND);
+        }
+        else{
+            Brand brand = this.brandRepository.findByBrandId(brandId);
+            this.brandRepository.deleteById(brandId);
+            return new SuccessDataResult<>(BrandViewDto.of(brand), Messages.GlobalMessages.DATA_DELETED);
+        }
+    }
+
+    @Override
     public DataResult<BrandViewDto> findByBrandId(int brandId) {
         Brand brand = this.brandRepository.findByBrandId(brandId);
         BrandViewDto result = this.modelMapperService.forDto().map(brand, BrandViewDto.class);
@@ -65,5 +94,13 @@ public class BrandManager implements BrandService {
     public DataResult<BrandViewDto> findByBrandName(String brandName) {
         Brand brand = this.brandRepository.findByBrandName(brandName);
         BrandViewDto result = this.modelMapperService.forDto().map(brand, BrandViewDto.class);
-        return new SuccessDataResult<>(result, Messages.BrandMessages.BRAND_LISTED_BY_BRAND_NAME);    }
+        return new SuccessDataResult<>(result, Messages.BrandMessages.BRAND_LISTED_BY_BRAND_NAME);
+    }
+
+    private boolean checkIfBrandIdExists(int brandId) {
+        if(this.brandRepository.existsByBrandId(brandId)){
+            return true;
+        }
+        return false;
+    }
 }

@@ -1,5 +1,6 @@
 package backend.rentacar.business.constants;
 
+import backend.rentacar.entities.dtos.branddto.BrandViewDto;
 import backend.rentacar.entities.dtos.userdto.UserViewDto;
 
 public class Messages {
@@ -14,6 +15,7 @@ public class Messages {
         public static final String BRAND_LISTED_BY_BRAND_NAME_DESC = "Brands listed by brand name in descending order.";
         public static final String BRAND_LISTED_BY_BRAND_ID = "Brand listed by brand id.";
         public static final String BRAND_LISTED_BY_BRAND_NAME = "Brand listed by brand name.";
+        public static final String BRAND_ID_NOT_FOUND = "Brand id not found." ;
     }
     public class CarMessages{
         public static final String CAR_LISTED_BY_CAR_NAME_ASC = "Cars listed by car name in ascending order.";
@@ -54,7 +56,6 @@ public class Messages {
         public static final String USER_LISTED_BY_EMAIL = "User listed by email.";
         public static final String USER_EMAIL_ALREADY_EXIST = "Email already exist.";
         public static final String USER_ID_NOT_FOUND = "User id not found.";
-        public static final String USER_EMAIL_NOT_FOUND = "User email not found.";
     }
 }
 
