@@ -1,6 +1,7 @@
 package backend.rentacar.business.constants;
 
 import backend.rentacar.entities.dtos.branddto.BrandViewDto;
+import backend.rentacar.entities.dtos.carimagedto.CarImageViewDto;
 import backend.rentacar.entities.dtos.userdto.UserViewDto;
 
 public class Messages {
@@ -57,6 +58,10 @@ public class Messages {
         public static final String USER_LISTED_BY_EMAIL = "User listed by email.";
         public static final String USER_EMAIL_ALREADY_EXIST = "User email already exist.";
         public static final String USER_ID_NOT_FOUND = "User id not found.";
+    }
+    public class CarImageMessages{
+        public static final String IMAGE_PATH_ALREADY_EXIST = "Image path already exist.";
+        public static final String CAR_IMAGE_ID_NOT_FOUND = "Car image id not found.";
     }
 }
 
