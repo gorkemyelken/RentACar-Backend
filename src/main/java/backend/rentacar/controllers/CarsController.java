@@ -2,6 +2,7 @@ package backend.rentacar.controllers;
 
 import backend.rentacar.business.abstracts.CarService;
 import backend.rentacar.entities.dtos.cardto.CarCreateDto;
+import backend.rentacar.entities.dtos.cardto.CarUpdateDto;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -107,5 +108,14 @@ public class CarsController {
     @GetMapping("/getallsortedbymodelyeardesc")
     public ResponseEntity<?> getAllSortedByModelYearDesc(){
         return new ResponseEntity<>(this.carService.getAllSortedByModelYearDesc(), HttpStatus.OK);
+    }
+    @PutMapping("/update")
+    public ResponseEntity<?> update(@RequestParam int carId, @Valid @RequestBody CarUpdateDto carUpdateDto){
+        return new ResponseEntity<>(this.carService.update(carId, carUpdateDto), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> delete(@RequestParam int carId){
+        return new ResponseEntity<>(this.carService.delete(carId), HttpStatus.OK);
     }
 }
