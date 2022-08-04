@@ -23,7 +23,6 @@ public class CustomerUpdateDto {
 
     @NotNull
     @NotBlank
-    @UniqueElements
     private String nationalityNumber;
 
     @NotNull
@@ -32,7 +31,6 @@ public class CustomerUpdateDto {
     @Email
     @NotNull
     @NotBlank
-    @UniqueElements
     private String email;
 
     @NotNull

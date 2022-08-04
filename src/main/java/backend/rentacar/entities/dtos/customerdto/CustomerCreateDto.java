@@ -23,7 +23,6 @@ public class CustomerCreateDto {
 
     @NotNull
     @NotBlank
-    @UniqueElements
     private String nationalityNumber;
 
     @NotNull
@@ -32,7 +31,6 @@ public class CustomerCreateDto {
     @Email
     @NotNull
     @NotBlank
-    @UniqueElements
     private String email;
 
     @NotNull

@@ -14,7 +14,6 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class CarCreateDto {
     @NotNull
-    @UniqueElements
     private String carName;
 
     @NotNull

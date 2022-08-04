@@ -17,7 +17,6 @@ public class UserUpdateDto {
     @NotNull
     @Email
     @NotBlank
-    @UniqueElements
     private String email;
 
     @NotNull

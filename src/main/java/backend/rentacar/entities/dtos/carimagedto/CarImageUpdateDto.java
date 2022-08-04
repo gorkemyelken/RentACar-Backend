@@ -12,6 +12,5 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class CarImageUpdateDto {
     @NotNull
-    @UniqueElements
     private String imagePath;
 }

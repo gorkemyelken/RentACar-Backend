@@ -17,7 +17,6 @@ public class UserCreateDto {
     @NotNull
     @Email
     @NotBlank
-    @UniqueElements
     private String email;
 
     @NotNull

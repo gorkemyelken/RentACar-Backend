@@ -12,6 +12,5 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class ColorCreateDto {
     @NotNull
-    @UniqueElements
     private String colorName;
 }

@@ -12,6 +12,5 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class BrandCreateDto {
     @NotNull
-    @UniqueElements
     private String brandName;
 }
