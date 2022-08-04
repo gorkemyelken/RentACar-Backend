@@ -4,9 +4,13 @@ import backend.rentacar.business.abstracts.CarService;
 import backend.rentacar.business.constants.Messages;
 import backend.rentacar.core.utilities.mapping.ModelMapperService;
 import backend.rentacar.core.utilities.results.DataResult;
+import backend.rentacar.core.utilities.results.ErrorDataResult;
 import backend.rentacar.core.utilities.results.SuccessDataResult;
+import backend.rentacar.entities.concretes.User;
 import backend.rentacar.entities.dtos.cardto.CarCreateDto;
+import backend.rentacar.entities.dtos.cardto.CarUpdateDto;
 import backend.rentacar.entities.dtos.cardto.CarViewDto;
+import backend.rentacar.entities.dtos.userdto.UserViewDto;
 import backend.rentacar.repositories.abstracts.CarRepository;
 import backend.rentacar.entities.concretes.Car;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,8 +99,42 @@ public class CarManager implements CarService {
 
     @Override
     public DataResult<CarViewDto> add(CarCreateDto carCreateDto) {
-        Car car = this.carRepository.save(new Car(carCreateDto.getCarName(),carCreateDto.getDailyPrice(),carCreateDto.getModelYear(),carCreateDto.getDescription(),carCreateDto.getBrand(),carCreateDto.getColor()));
-        return new SuccessDataResult<>(CarViewDto.of(car), Messages.GlobalMessages.DATA_ADDED);
+        if(checkIfCarNameExists(carCreateDto.getCarName())){
+            return new ErrorDataResult<>(Messages.CarMessages.CAR_NAME_ALREADY_EXIST);
+        }else{
+            Car car = this.carRepository.save(new Car(carCreateDto.getCarName(),carCreateDto.getDailyPrice(),carCreateDto.getModelYear(),carCreateDto.getDescription(),carCreateDto.getBrand(),carCreateDto.getColor()));
+            return new SuccessDataResult<>(CarViewDto.of(car), Messages.GlobalMessages.DATA_ADDED);
+        }
+    }
+
+    @Override
+    public DataResult<CarViewDto> update(int carId, CarUpdateDto carUpdateDto) {
+        if(!checkIfCarIdExists(carId)){
+            return new ErrorDataResult<>(Messages.CarMessages.CAR_ID_NOT_FOUND);
+        }
+        else{
+            Car car = this.carRepository.findByCarId(carId);
+            car.setCarName(carUpdateDto.getCarName());
+            car.setBrand(carUpdateDto.getBrand());
+            car.setColor(carUpdateDto.getColor());
+            car.setDailyPrice(carUpdateDto.getDailyPrice());
+            car.setDescription(carUpdateDto.getDescription());
+            car.setModelYear(carUpdateDto.getModelYear());
+            this.carRepository.save(car);
+            return new SuccessDataResult<>(CarViewDto.of(car), Messages.GlobalMessages.DATA_UPDATED);
+        }
+    }
+
+    @Override
+    public DataResult<CarViewDto> delete(int carId) {
+        if(!checkIfCarIdExists(carId)){
+            return new ErrorDataResult<>(Messages.CarMessages.CAR_ID_NOT_FOUND);
+        }
+        else{
+            Car car = this.carRepository.findByCarId(carId);
+            this.carRepository.deleteById(carId);
+            return new SuccessDataResult<>(CarViewDto.of(car), Messages.GlobalMessages.DATA_DELETED);
+        }
     }
 
     @Override
@@ -180,4 +218,19 @@ public class CarManager implements CarService {
         List<Car> cars = this.carRepository.findByColor_ColorId(colorId);
         List<CarViewDto> result = cars.stream().map(car -> this.modelMapperService.forDto().map(car,CarViewDto.class)).collect(Collectors.toList());
         return new SuccessDataResult<>(result, Messages.CarMessages.CAR_LISTED_BY_COLOR);  }
+
+    private boolean checkIfCarNameExists(String carName) {
+        if(this.carRepository.existsByCarName(carName)){
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkIfCarIdExists(int carId) {
+        if(this.carRepository.existsByCarId(carId)){
+            return true;
+        }
+        return false;
+    }
+
 }

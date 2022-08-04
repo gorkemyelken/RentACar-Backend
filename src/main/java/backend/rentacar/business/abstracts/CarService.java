@@ -2,6 +2,7 @@ package backend.rentacar.business.abstracts;
 
 import backend.rentacar.core.utilities.results.DataResult;
 import backend.rentacar.entities.dtos.cardto.CarCreateDto;
+import backend.rentacar.entities.dtos.cardto.CarUpdateDto;
 import backend.rentacar.entities.dtos.cardto.CarViewDto;
 
 import java.util.List;
@@ -16,6 +17,8 @@ public interface CarService {
     DataResult<List<CarViewDto>> getAllSortedByModelYearAsc();
     DataResult<List<CarViewDto>> getAllSortedByModelYearDesc();
     DataResult<CarViewDto> add(CarCreateDto carCreateDto);
+    DataResult<CarViewDto> update(int carId, CarUpdateDto carUpdateDto);
+    DataResult<CarViewDto> delete(int carId);
     DataResult<CarViewDto> findByCarId(int carId);
     DataResult<CarViewDto> findByCarName(String carName);
     DataResult<List<CarViewDto>> findByDailyPrice(double dailyPrice);

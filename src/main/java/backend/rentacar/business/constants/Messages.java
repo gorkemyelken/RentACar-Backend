@@ -1,6 +1,7 @@
 package backend.rentacar.business.constants;
 
 import backend.rentacar.entities.dtos.branddto.BrandViewDto;
+import backend.rentacar.entities.dtos.cardto.CarViewDto;
 import backend.rentacar.entities.dtos.carimagedto.CarImageViewDto;
 import backend.rentacar.entities.dtos.userdto.UserViewDto;
 
@@ -39,6 +40,8 @@ public class Messages {
         public static final String CAR_LISTED_BY_DESCRIPTION_CONTAINING = "Cars listed by description containing.";
         public static final String CAR_LISTED_BY_BRAND = "Cars listed by brand.";
         public static final String CAR_LISTED_BY_COLOR = "Cars listed by color.";
+        public static final String CAR_NAME_ALREADY_EXIST = "Car name already exist.";
+        public static final String CAR_ID_NOT_FOUND = "Car id not found.";
     }
     public class ColorMessages{
         public static final String COLOR_LISTED_BY_COLOR_NAME_ASC = "Colors listed by color name in ascending order.";
