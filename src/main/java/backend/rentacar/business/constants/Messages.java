@@ -5,6 +5,7 @@ import backend.rentacar.entities.dtos.cardto.CarViewDto;
 import backend.rentacar.entities.dtos.carimagedto.CarImageViewDto;
 import backend.rentacar.entities.dtos.colordto.ColorViewDto;
 import backend.rentacar.entities.dtos.customerdto.CustomerViewDto;
+import backend.rentacar.entities.dtos.rentaldto.RentalViewDto;
 import backend.rentacar.entities.dtos.userdto.UserViewDto;
 
 public class Messages {
@@ -60,6 +61,7 @@ public class Messages {
         public static final String RENTAL_LISTED_BY_RENT_DATE_DESC = "Rentals listed by rent date in descending order.";
         public static final String RENTAL_LISTED_BY_RETURN_DATE_ASC = "Rentals listed by return date in ascending order.";
         public static final String RENTAL_LISTED_BY_RETURN_DATE_DESC = "Rentals listed by return date in descending order.";
+        public static final String RENTAL_ID_NOT_FOUND = "Rental id not found.";
     }
     public class UserMessages{
         public static final String USER_LISTED_BY_EMAIL = "User listed by email.";
