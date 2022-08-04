@@ -2,6 +2,8 @@ package backend.rentacar.controllers;
 
 import backend.rentacar.business.abstracts.ColorService;
 import backend.rentacar.entities.dtos.colordto.ColorCreateDto;
+import backend.rentacar.entities.dtos.colordto.ColorUpdateDto;
+import backend.rentacar.entities.dtos.userdto.UserUpdateDto;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -44,5 +46,13 @@ public class ColorsController {
     @GetMapping("getallbycolornamedesc")
     public ResponseEntity<?> getAllByColorNameDesc(){
         return new ResponseEntity<>(this.colorService.getAllByColorNameDesc(), HttpStatus.OK);
+    }
+    @PutMapping("/update")
+    public ResponseEntity<?> update(@RequestParam int colorId, @Valid @RequestBody ColorUpdateDto colorUpdateDto){
+        return new ResponseEntity<>(this.colorService.update(colorId, colorUpdateDto), HttpStatus.OK);
+    }
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> delete(@RequestParam int colorId){
+        return new ResponseEntity<>(this.colorService.delete(colorId), HttpStatus.OK);
     }
 }
