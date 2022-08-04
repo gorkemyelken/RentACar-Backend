@@ -1,21 +1,18 @@
 package backend.rentacar.business.constants;
 
 public class Messages {
-
     public class GlobalMessages{
         public static final String DATA_LISTED = "Data listed successfully.";
         public static final String DATA_ADDED = "Data added successfully.";
         public static final String DATA_UPDATED = "Data updated successfully.";
         public static final String DATA_DELETED = "Data deleted successfully.";
     }
-
     public class BrandMessages{
         public static final String BRAND_LISTED_BY_BRAND_NAME_ASC = "Brands listed by brand name in ascending order.";
         public static final String BRAND_LISTED_BY_BRAND_NAME_DESC = "Brands listed by brand name in descending order.";
         public static final String BRAND_LISTED_BY_BRAND_ID = "Brand listed by brand id.";
         public static final String BRAND_LISTED_BY_BRAND_NAME = "Brand listed by brand name.";
     }
-
     public class CarMessages{
         public static final String CAR_LISTED_BY_CAR_NAME_ASC = "Cars listed by car name in ascending order.";
         public static final String CAR_LISTED_BY_CAR_NAME_DESC = "Cars listed by car name in descending order.";
@@ -37,11 +34,22 @@ public class Messages {
         public static final String CAR_LISTED_BY_BRAND = "Cars listed by brand.";
         public static final String CAR_LISTED_BY_COLOR = "Cars listed by color.";
     }
-
     public class ColorMessages{
         public static final String COLOR_LISTED_BY_COLOR_NAME_ASC = "Colors listed by color name in ascending order.";
         public static final String COLOR_LISTED_BY_COLOR_NAME_DESC = "Colors listed by color name in descending order.";
-        public static final String COLOR_LISTED_BY_COLOR_ID = "Colors listed by color id.";
+        public static final String COLOR_LISTED_BY_COLOR_ID = "Color listed by color id.";
         public static final String COLOR_LISTED_BY_COLOR_NAME = "Colors listed by color name.";
     }
+    public class RentalMessages{
+
+        public static final String RENTAL_LISTED_BY_RENTAL_ID = "Rental listed by rental id.";
+        public static final String RENTAL_LISTED_BY_RENT_DATE_ASC = "Rentals listed by rent date in ascending order.";
+        public static final String RENTAL_LISTED_BY_RENT_DATE_DESC = "Rentals listed by rent date in descending order.";
+        public static final String RENTAL_LISTED_BY_RETURN_DATE_ASC = "Rentals listed by return date in ascending order.";
+        public static final String RENTAL_LISTED_BY_RETURN_DATE_DESC = "Rentals listed by return date in descending order.";
+    }
+    public class UserMessages{
+        public static final String USER_LISTED_BY_EMAIL = "User listed by email.";
+    }
 }
+
