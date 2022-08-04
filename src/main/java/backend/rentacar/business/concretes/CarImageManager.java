@@ -1,6 +1,7 @@
 package backend.rentacar.business.concretes;
 
 import backend.rentacar.business.abstracts.CarImageService;
+import backend.rentacar.business.constants.Messages;
 import backend.rentacar.core.utilities.mapping.ModelMapperService;
 import backend.rentacar.core.utilities.results.DataResult;
 import backend.rentacar.core.utilities.results.SuccessDataResult;
@@ -29,12 +30,12 @@ public class CarImageManager implements CarImageService {
     public DataResult<List<CarImageViewDto>> getAll() {
         List<CarImage> carImages = this.carImageRepository.findAll();
         List<CarImageViewDto> result = carImages.stream().map(carImage -> this.modelMapperService.forDto().map(carImage,CarImageViewDto.class)).collect(Collectors.toList());
-        return new SuccessDataResult<>(result);  }
+        return new SuccessDataResult<>(result, Messages.GlobalMessages.DATA_LISTED);  }
 
     @Override
     public DataResult<CarImageViewDto> add(CarImageCreateDto carImageCreateDto) {
         CarImage carImage = this.carImageRepository.save(new CarImage(carImageCreateDto.getImagePath()));
-        return new SuccessDataResult<>(CarImageViewDto.of(carImage));
+        return new SuccessDataResult<>(CarImageViewDto.of(carImage), Messages.GlobalMessages.DATA_ADDED);
     }
 
 }
