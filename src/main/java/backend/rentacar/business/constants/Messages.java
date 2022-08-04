@@ -4,6 +4,7 @@ import backend.rentacar.entities.dtos.branddto.BrandViewDto;
 import backend.rentacar.entities.dtos.cardto.CarViewDto;
 import backend.rentacar.entities.dtos.carimagedto.CarImageViewDto;
 import backend.rentacar.entities.dtos.colordto.ColorViewDto;
+import backend.rentacar.entities.dtos.customerdto.CustomerViewDto;
 import backend.rentacar.entities.dtos.userdto.UserViewDto;
 
 public class Messages {
@@ -68,6 +69,12 @@ public class Messages {
     public class CarImageMessages{
         public static final String IMAGE_PATH_ALREADY_EXIST = "Image path already exist.";
         public static final String CAR_IMAGE_ID_NOT_FOUND = "Car image id not found.";
+    }
+    public class CustomerMessages{
+
+        public static final String CUSTOMER_EMAIL_ALREADY_EXIST = "Customer email already exist.";
+        public static final String CUSTOMER_NATIONALITY_NUMBER_ALREADY_EXIST = "Customer nationality number already exist.";
+        public static final String CUSTOMER_ID_NOT_FOUND = "Customer id not found.";
     }
 }
 

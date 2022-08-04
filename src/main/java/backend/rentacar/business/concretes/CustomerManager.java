@@ -4,9 +4,13 @@ import backend.rentacar.business.abstracts.CustomerService;
 import backend.rentacar.business.constants.Messages;
 import backend.rentacar.core.utilities.mapping.ModelMapperService;
 import backend.rentacar.core.utilities.results.DataResult;
+import backend.rentacar.core.utilities.results.ErrorDataResult;
 import backend.rentacar.core.utilities.results.SuccessDataResult;
+import backend.rentacar.entities.concretes.User;
 import backend.rentacar.entities.dtos.customerdto.CustomerCreateDto;
+import backend.rentacar.entities.dtos.customerdto.CustomerUpdateDto;
 import backend.rentacar.entities.dtos.customerdto.CustomerViewDto;
+import backend.rentacar.entities.dtos.userdto.UserViewDto;
 import backend.rentacar.repositories.abstracts.CustomerRepository;
 import backend.rentacar.entities.concretes.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +40,66 @@ public class CustomerManager implements CustomerService {
 
     @Override
     public DataResult<CustomerViewDto> add(CustomerCreateDto customerCreateDto) {
-        Customer customer = this.customerRepository.save(new Customer(customerCreateDto.getFirstName(), customerCreateDto.getLastName(), customerCreateDto.getNationalityNumber(), customerCreateDto.getBirthYear(), customerCreateDto.getEmail(), customerCreateDto.getPassword()));
-        return new SuccessDataResult<>(CustomerViewDto.of(customer), Messages.GlobalMessages.DATA_ADDED);
+        if(checkIfCustomerEmailExists(customerCreateDto.getEmail())){
+            return new ErrorDataResult<>(Messages.CustomerMessages.CUSTOMER_EMAIL_ALREADY_EXIST);
+        }
+        else if(checkIfCustomerNationalityNumberExists(customerCreateDto.getNationalityNumber())){
+            return new ErrorDataResult<>(Messages.CustomerMessages.CUSTOMER_NATIONALITY_NUMBER_ALREADY_EXIST);
+        }
+        else{
+            Customer customer = this.customerRepository.save(new Customer(customerCreateDto.getFirstName(), customerCreateDto.getLastName(), customerCreateDto.getNationalityNumber(), customerCreateDto.getBirthYear(), customerCreateDto.getEmail(), customerCreateDto.getPassword()));
+            return new SuccessDataResult<>(CustomerViewDto.of(customer), Messages.GlobalMessages.DATA_ADDED);
+        }
+    }
+
+    @Override
+    public DataResult<CustomerViewDto> update(int customerId, CustomerUpdateDto customerUpdateDto) {
+        if(!checkIfCustomerIdExists(customerId)){
+            return new ErrorDataResult<>(Messages.CustomerMessages.CUSTOMER_ID_NOT_FOUND);
+        }
+        else{
+            Customer customer = this.customerRepository.findByCustomerId(customerId);
+            customer.setEmail(customerUpdateDto.getEmail());
+            customer.setBirthYear(customerUpdateDto.getBirthYear());
+            customer.setFirstName(customerUpdateDto.getFirstName());
+            customer.setLastName(customerUpdateDto.getLastName());
+            customer.setNationalityNumber(customerUpdateDto.getNationalityNumber());
+            customer.setPassword(customerUpdateDto.getPassword());
+            this.customerRepository.save(customer);
+            return new SuccessDataResult<>(CustomerViewDto.of(customer), Messages.GlobalMessages.DATA_UPDATED);
+        }
+    }
+
+    @Override
+    public DataResult<CustomerViewDto> delete(int customerId) {
+        if(!checkIfCustomerIdExists(customerId)){
+            return new ErrorDataResult<>(Messages.CustomerMessages.CUSTOMER_ID_NOT_FOUND);
+        }
+        else{
+            Customer customer = this.customerRepository.findByCustomerId(customerId);
+            this.customerRepository.deleteById(customerId);
+            return new SuccessDataResult<>(CustomerViewDto.of(customer), Messages.GlobalMessages.DATA_DELETED);
+        }
+    }
+
+    private boolean checkIfCustomerIdExists(int customerId) {
+        if(this.customerRepository.existsByCustomerId(customerId)){
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkIfCustomerNationalityNumberExists(String nationalityNumber) {
+        if(this.customerRepository.existsByNationalityNumber(nationalityNumber)){
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkIfCustomerEmailExists(String email) {
+        if(this.customerRepository.existsByEmail(email)){
+            return true;
+        }
+        return false;
     }
 }
