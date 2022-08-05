@@ -38,9 +38,13 @@ public class RentalManager implements RentalService {
 
     @Override
     public DataResult<RentalViewDto> findByRentalId(int rentalId) {
+        if(!checkIfRentalIdExists(rentalId)){
+            return new ErrorDataResult<>(Messages.RentalMessages.RENTAL_ID_NOT_FOUND);
+        }
+        else{
         Rental rental = this.rentalRepository.findByRentalId(rentalId);
         RentalViewDto result = this.modelMapperService.forDto().map(rental, RentalViewDto.class);
-        return new SuccessDataResult<>(result, Messages.RentalMessages.RENTAL_LISTED_BY_RENTAL_ID);     }
+        return new SuccessDataResult<>(result, Messages.RentalMessages.RENTAL_LISTED_BY_RENTAL_ID);  }   }
 
     @Override
     public DataResult<RentalViewDto> add(RentalCreateDto rentalCreateDto) {

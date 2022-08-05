@@ -1,5 +1,10 @@
 package backend.rentacar.business.constants;
 
+import backend.rentacar.entities.dtos.branddto.BrandViewDto;
+import backend.rentacar.entities.dtos.cardto.CarViewDto;
+import backend.rentacar.entities.dtos.colordto.ColorViewDto;
+import backend.rentacar.entities.dtos.userdto.UserViewDto;
+
 public class Messages {
     public static class GlobalMessages{
         public static final String DATA_LISTED = "Data listed successfully.";
@@ -14,6 +19,7 @@ public class Messages {
         public static final String BRAND_LISTED_BY_BRAND_NAME = "Brand listed by brand name.";
         public static final String BRAND_ID_NOT_FOUND = "Brand id not found." ;
         public static final String BRAND_NAME_ALREADY_EXIST = "Brand name already exist.";
+        public static final String BRAND_NAME_NOT_FOUND = "Brand name not found.";
     }
     public static class CarMessages{
         public static final String CAR_LISTED_BY_CAR_NAME_ASC = "Cars listed by car name in ascending order.";
@@ -37,6 +43,7 @@ public class Messages {
         public static final String CAR_LISTED_BY_COLOR = "Cars listed by color.";
         public static final String CAR_NAME_ALREADY_EXIST = "Car name already exist.";
         public static final String CAR_ID_NOT_FOUND = "Car id not found.";
+        public static final String CAR_NAME_NOT_FOUND = "Car name not found.";
     }
     public static class ColorMessages{
         public static final String COLOR_LISTED_BY_COLOR_NAME_ASC = "Colors listed by color name in ascending order.";
@@ -45,6 +52,7 @@ public class Messages {
         public static final String COLOR_LISTED_BY_COLOR_NAME = "Colors listed by color name.";
         public static final String COLOR_NAME_ALREADY_EXIST = "Color name already exist.";
         public static final String COLOR_ID_NOT_FOUND = "Color id not found.";
+        public static final String COLOR_NAME_NOT_FOUND = "Color name not found.";
     }
     public static class RentalMessages{
 
@@ -59,6 +67,7 @@ public class Messages {
         public static final String USER_LISTED_BY_EMAIL = "User listed by email.";
         public static final String USER_EMAIL_ALREADY_EXIST = "User email already exist.";
         public static final String USER_ID_NOT_FOUND = "User id not found.";
+        public static final String USER_EMAIL_NOT_FOUND = "User email not found.";
     }
     public static class CarImageMessages{
         public static final String IMAGE_PATH_ALREADY_EXIST = "Image path already exist.";

@@ -12,8 +12,9 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CarImage {
-    public CarImage(String imagePath){
+    public CarImage(String imagePath, Car car){
         this.imagePath = imagePath;
+        this.car = car;
     }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

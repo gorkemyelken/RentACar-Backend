@@ -40,7 +40,7 @@ public class CarImageManager implements CarImageService {
             return new ErrorDataResult<>(Messages.CarImageMessages.IMAGE_PATH_ALREADY_EXIST);
         }
         else{
-            CarImage carImage = this.carImageRepository.save(new CarImage(carImageCreateDto.getImagePath()));
+            CarImage carImage = this.carImageRepository.save(new CarImage(carImageCreateDto.getImagePath(), carImageCreateDto.getCar()));
             return new SuccessDataResult<>(CarImageViewDto.of(carImage), Messages.GlobalMessages.DATA_ADDED);
         }
 
@@ -54,6 +54,7 @@ public class CarImageManager implements CarImageService {
         else{
             CarImage carImage = this.carImageRepository.findByCarImageId(carImageId);
             carImage.setImagePath(carImageUpdateDto.getImagePath());
+            carImage.setCar(carImageUpdateDto.getCar());
             this.carImageRepository.save(carImage);
             return new SuccessDataResult<>(CarImageViewDto.of(carImage), Messages.GlobalMessages.DATA_UPDATED);
         }

@@ -89,15 +89,23 @@ public class BrandManager implements BrandService {
 
     @Override
     public DataResult<BrandViewDto> findByBrandId(int brandId) {
+        if(!checkIfBrandIdExists(brandId)){
+            return new ErrorDataResult<>(Messages.BrandMessages.BRAND_ID_NOT_FOUND);
+        }
+        else{
         Brand brand = this.brandRepository.findByBrandId(brandId);
         BrandViewDto result = this.modelMapperService.forDto().map(brand, BrandViewDto.class);
-        return new SuccessDataResult<>(result, Messages.BrandMessages.BRAND_LISTED_BY_BRAND_ID);     }
+        return new SuccessDataResult<>(result, Messages.BrandMessages.BRAND_LISTED_BY_BRAND_ID);   }  }
 
     @Override
     public DataResult<BrandViewDto> findByBrandName(String brandName) {
+        if(!checkIfBrandNameExists(brandName)){
+            return new ErrorDataResult<>(Messages.BrandMessages.BRAND_NAME_NOT_FOUND);
+        }
+        else{
         Brand brand = this.brandRepository.findByBrandName(brandName);
         BrandViewDto result = this.modelMapperService.forDto().map(brand, BrandViewDto.class);
-        return new SuccessDataResult<>(result, Messages.BrandMessages.BRAND_LISTED_BY_BRAND_NAME);
+        return new SuccessDataResult<>(result, Messages.BrandMessages.BRAND_LISTED_BY_BRAND_NAME);}
     }
 
     private boolean checkIfBrandIdExists(int brandId) {

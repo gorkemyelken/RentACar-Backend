@@ -73,7 +73,7 @@ public class CarManager implements CarService {
 
     @Override
     public DataResult<List<CarViewDto>> getAllSortedByDailyPriceDesc() {
-        Sort sort = Sort.by(Sort.Direction.ASC,"dailyPrice");
+        Sort sort = Sort.by(Sort.Direction.DESC,"dailyPrice");
         List<Car> cars = this.carRepository.findAll(sort);
         List<CarViewDto> result = cars.stream().map(car -> this.modelMapperService.forDto().map(car,CarViewDto.class)).collect(Collectors.toList());
         return new SuccessDataResult<>(result, Messages.CarMessages.CAR_LISTED_BY_DAILY_PRICE_DESC);
@@ -137,16 +137,22 @@ public class CarManager implements CarService {
 
     @Override
     public DataResult<CarViewDto> findByCarId(int carId) {
+        if(!checkIfCarIdExists(carId)){
+            return new ErrorDataResult<>(Messages.CarMessages.CAR_ID_NOT_FOUND);
+        }else{
         Car car = this.carRepository.findByCarId(carId);
         CarViewDto result = this.modelMapperService.forDto().map(car, CarViewDto.class);
-        return new SuccessDataResult<>(result, Messages.CarMessages.CAR_LISTED_BY_CAR_ID);
+        return new SuccessDataResult<>(result, Messages.CarMessages.CAR_LISTED_BY_CAR_ID);}
     }
 
     @Override
     public DataResult<CarViewDto> findByCarName(String carName) {
+        if(!checkIfCarNameExists(carName)){
+            return new ErrorDataResult<>(Messages.CarMessages.CAR_NAME_NOT_FOUND);
+        }else{
         Car car = this.carRepository.findByCarName(carName);
         CarViewDto result = this.modelMapperService.forDto().map(car, CarViewDto.class);
-        return new SuccessDataResult<>(result, Messages.CarMessages.CAR_LISTED_BY_CAR_NAME);    }
+        return new SuccessDataResult<>(result, Messages.CarMessages.CAR_LISTED_BY_CAR_NAME); }   }
 
     @Override
     public DataResult<List<CarViewDto>> findByDailyPrice(double dailyPrice) {

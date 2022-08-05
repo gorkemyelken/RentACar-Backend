@@ -49,9 +49,13 @@ public class UserManager implements UserService {
 
     @Override
     public DataResult<UserViewDto> findByEmail(String email) {
+        if(!checkIfUserEmailExists(email)){
+            return new ErrorDataResult<>(Messages.UserMessages.USER_EMAIL_NOT_FOUND);
+        }
+        else{
         User user = this.userRepository.findByEmail(email);
         UserViewDto result = this.modelMapperService.forDto().map(user, UserViewDto.class);
-        return new SuccessDataResult<>(result, Messages.UserMessages.USER_LISTED_BY_EMAIL);
+        return new SuccessDataResult<>(result, Messages.UserMessages.USER_LISTED_BY_EMAIL);}
     }
 
     @Override

@@ -87,15 +87,23 @@ public class ColorManager implements ColorService {
 
     @Override
     public DataResult<ColorViewDto> findByColorId(int colorId) {
+        if(!checkIfColorIdExists(colorId)){
+            return new ErrorDataResult<>(Messages.ColorMessages.COLOR_ID_NOT_FOUND);
+        }
+        else{
         Color color = this.colorRepository.findByColorId(colorId);
         ColorViewDto result = this.modelMapperService.forDto().map(color, ColorViewDto.class);
-        return new SuccessDataResult<>(result, Messages.ColorMessages.COLOR_LISTED_BY_COLOR_ID);  }
+        return new SuccessDataResult<>(result, Messages.ColorMessages.COLOR_LISTED_BY_COLOR_ID);  }}
 
     @Override
     public DataResult<ColorViewDto> findByColorName(String colorName) {
+        if(!checkIfColorNameExists(colorName)){
+            return new ErrorDataResult<>(Messages.ColorMessages.COLOR_NAME_NOT_FOUND);
+        }
+        else{
         Color color = this.colorRepository.findByColorName(colorName);
         ColorViewDto result = this.modelMapperService.forDto().map(color, ColorViewDto.class);
-        return new SuccessDataResult<>(result, Messages.ColorMessages.COLOR_LISTED_BY_COLOR_NAME);  }
+        return new SuccessDataResult<>(result, Messages.ColorMessages.COLOR_LISTED_BY_COLOR_NAME); } }
 
     private boolean checkIfColorNameExists(String colorName) {
         return this.colorRepository.existsByColorName(colorName);

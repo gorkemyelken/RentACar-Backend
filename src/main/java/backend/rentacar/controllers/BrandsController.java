@@ -21,7 +21,7 @@ public class BrandsController {
         this.brandService = brandService;
     }
 
-    @GetMapping("/getAll")
+    @GetMapping("/getall")
     public ResponseEntity<?> getAll(){
         return new ResponseEntity<>(this.brandService.getAll(), HttpStatus.OK);
     }
