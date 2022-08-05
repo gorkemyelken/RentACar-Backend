@@ -6,11 +6,9 @@ import backend.rentacar.core.utilities.mapping.ModelMapperService;
 import backend.rentacar.core.utilities.results.DataResult;
 import backend.rentacar.core.utilities.results.ErrorDataResult;
 import backend.rentacar.core.utilities.results.SuccessDataResult;
-import backend.rentacar.entities.concretes.User;
 import backend.rentacar.entities.dtos.rentaldto.RentalCreateDto;
 import backend.rentacar.entities.dtos.rentaldto.RentalUpdateDto;
 import backend.rentacar.entities.dtos.rentaldto.RentalViewDto;
-import backend.rentacar.entities.dtos.userdto.UserViewDto;
 import backend.rentacar.repositories.abstracts.RentalRepository;
 import backend.rentacar.entities.concretes.Rental;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -107,9 +105,6 @@ public class RentalManager implements RentalService {
         return new SuccessDataResult<>(result, Messages.RentalMessages.RENTAL_LISTED_BY_RETURN_DATE_DESC);    }
 
     private boolean checkIfRentalIdExists(int rentalId) {
-        if(this.rentalRepository.existsByRentalId(rentalId)){
-            return true;
-        }
-        return false;
+        return this.rentalRepository.existsByRentalId(rentalId);
     }
 }

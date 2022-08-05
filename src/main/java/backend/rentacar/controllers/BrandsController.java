@@ -3,9 +3,6 @@ package backend.rentacar.controllers;
 import backend.rentacar.business.abstracts.BrandService;
 import backend.rentacar.entities.dtos.branddto.BrandCreateDto;
 import backend.rentacar.entities.dtos.branddto.BrandUpdateDto;
-import backend.rentacar.entities.dtos.rentaldto.RentalCreateDto;
-import backend.rentacar.entities.dtos.userdto.UserCreateDto;
-import backend.rentacar.entities.dtos.userdto.UserUpdateDto;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,7 +21,7 @@ public class BrandsController {
         this.brandService = brandService;
     }
 
-    @GetMapping("/getall")
+    @GetMapping("/getAll")
     public ResponseEntity<?> getAll(){
         return new ResponseEntity<>(this.brandService.getAll(), HttpStatus.OK);
     }

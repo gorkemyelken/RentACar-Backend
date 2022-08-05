@@ -6,11 +6,9 @@ import backend.rentacar.core.utilities.mapping.ModelMapperService;
 import backend.rentacar.core.utilities.results.DataResult;
 import backend.rentacar.core.utilities.results.ErrorDataResult;
 import backend.rentacar.core.utilities.results.SuccessDataResult;
-import backend.rentacar.entities.concretes.User;
 import backend.rentacar.entities.dtos.cardto.CarCreateDto;
 import backend.rentacar.entities.dtos.cardto.CarUpdateDto;
 import backend.rentacar.entities.dtos.cardto.CarViewDto;
-import backend.rentacar.entities.dtos.userdto.UserViewDto;
 import backend.rentacar.repositories.abstracts.CarRepository;
 import backend.rentacar.entities.concretes.Car;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -220,17 +218,11 @@ public class CarManager implements CarService {
         return new SuccessDataResult<>(result, Messages.CarMessages.CAR_LISTED_BY_COLOR);  }
 
     private boolean checkIfCarNameExists(String carName) {
-        if(this.carRepository.existsByCarName(carName)){
-            return true;
-        }
-        return false;
+        return this.carRepository.existsByCarName(carName);
     }
 
     private boolean checkIfCarIdExists(int carId) {
-        if(this.carRepository.existsByCarId(carId)){
-            return true;
-        }
-        return false;
+        return this.carRepository.existsByCarId(carId);
     }
 
 }

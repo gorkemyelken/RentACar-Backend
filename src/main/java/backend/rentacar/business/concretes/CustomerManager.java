@@ -32,7 +32,7 @@ public class CustomerManager implements CustomerService {
     }
 
     @Override
-    public DataResult<List<CustomerViewDto>> getall() {
+    public DataResult<List<CustomerViewDto>> getAll() {
         List<Customer> customers = this.customerRepository.findAll();
         List<CustomerViewDto> result = customers.stream().map(customer -> this.modelMapperService.forDto().map(customer, CustomerViewDto.class)).collect(Collectors.toList());
         return new SuccessDataResult<>(result, Messages.GlobalMessages.DATA_LISTED);

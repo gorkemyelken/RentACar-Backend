@@ -8,7 +8,7 @@ import backend.rentacar.entities.dtos.customerdto.CustomerViewDto;
 import java.util.List;
 
 public interface CustomerService {
-    DataResult<List<CustomerViewDto>> getall();
+    DataResult<List<CustomerViewDto>> getAll();
     DataResult<CustomerViewDto> add(CustomerCreateDto customerCreateDto);
     DataResult<CustomerViewDto> update(int customerId, CustomerUpdateDto customerUpdateDto);
     DataResult<CustomerViewDto> delete(int customerId);

@@ -7,11 +7,9 @@ import backend.rentacar.core.utilities.results.DataResult;
 import backend.rentacar.core.utilities.results.ErrorDataResult;
 import backend.rentacar.core.utilities.results.SuccessDataResult;
 import backend.rentacar.entities.concretes.CarImage;
-import backend.rentacar.entities.concretes.User;
 import backend.rentacar.entities.dtos.carimagedto.CarImageCreateDto;
 import backend.rentacar.entities.dtos.carimagedto.CarImageUpdateDto;
 import backend.rentacar.entities.dtos.carimagedto.CarImageViewDto;
-import backend.rentacar.entities.dtos.userdto.UserViewDto;
 import backend.rentacar.repositories.abstracts.CarImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -76,16 +74,10 @@ public class CarImageManager implements CarImageService {
     }
 
     private boolean checkIfImagePathExists(String imagePath) {
-        if(this.carImageRepository.existsByImagePath(imagePath)){
-            return true;
-        }
-        return false;
+        return this.carImageRepository.existsByImagePath(imagePath);
     }
     private boolean checkIfCarImageIdExists(int carImageId) {
-        if(this.carImageRepository.existsByCarImageId(carImageId)){
-            return true;
-        }
-        return false;
+        return this.carImageRepository.existsByCarImageId(carImageId);
     }
 
 }

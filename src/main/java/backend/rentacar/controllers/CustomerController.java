@@ -3,7 +3,6 @@ package backend.rentacar.controllers;
 import backend.rentacar.business.abstracts.CustomerService;
 import backend.rentacar.entities.dtos.customerdto.CustomerCreateDto;
 import backend.rentacar.entities.dtos.customerdto.CustomerUpdateDto;
-import backend.rentacar.entities.dtos.userdto.UserUpdateDto;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,14 +21,14 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @GetMapping("/getall")
+    @GetMapping("/getAll")
     public ResponseEntity<?> getall(){
-        return new ResponseEntity<>(this.customerService.getall(), HttpStatus.OK);
+        return new ResponseEntity<>(this.customerService.getAll(), HttpStatus.OK);
     }
     @PostMapping("/add")
-    public ResponseEntity add(@Valid @RequestBody CustomerCreateDto customerCreateDto){
+    public ResponseEntity<?> add(@Valid @RequestBody CustomerCreateDto customerCreateDto){
 
-        return new ResponseEntity(this.customerService.add(customerCreateDto), HttpStatus.CREATED);
+        return new ResponseEntity<>(this.customerService.add(customerCreateDto), HttpStatus.CREATED);
     }
     @PutMapping("/update")
     public ResponseEntity<?> update(@RequestParam int customerId, @Valid @RequestBody CustomerUpdateDto customerUpdateDto){

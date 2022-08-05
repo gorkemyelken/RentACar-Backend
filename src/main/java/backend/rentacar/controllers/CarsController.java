@@ -21,7 +21,7 @@ public class CarsController {
         this.carService = carService;
     }
 
-    @GetMapping("/getall")
+    @GetMapping("/getAll")
     public ResponseEntity<?> getAll(){
         return new ResponseEntity<>(this.carService.getAll(), HttpStatus.OK);
     }

@@ -3,7 +3,6 @@ package backend.rentacar.controllers;
 import backend.rentacar.business.abstracts.CarImageService;
 import backend.rentacar.entities.dtos.carimagedto.CarImageCreateDto;
 import backend.rentacar.entities.dtos.carimagedto.CarImageUpdateDto;
-import backend.rentacar.entities.dtos.userdto.UserUpdateDto;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,14 +22,14 @@ public class CarImagesController {
         this.carImageService = carImageService;
     }
 
-    @GetMapping("/getall")
+    @GetMapping("/getAll")
     public ResponseEntity<?> getAll(){
         return new ResponseEntity<>(this.carImageService.getAll(), HttpStatus.OK);
     }
 
     @PostMapping("/add")
     public ResponseEntity<?> add(@Valid @RequestBody CarImageCreateDto carImageCreateDto){
-        return new ResponseEntity(this.carImageService.add(carImageCreateDto), HttpStatus.CREATED);
+        return new ResponseEntity<>(this.carImageService.add(carImageCreateDto), HttpStatus.CREATED);
     }
     @PutMapping("/update")
     public ResponseEntity<?> update(@RequestParam int carImageId, @Valid @RequestBody CarImageUpdateDto carImageUpdateDto){

@@ -81,16 +81,10 @@ public class UserManager implements UserService {
     }
 
     private boolean checkIfUserEmailExists(String email) {
-        if(this.userRepository.existsByEmail(email)){
-            return true;
-        }
-        return false;
+        return this.userRepository.existsByEmail(email);
     }
 
     private boolean checkIfUserIdExists(int userId) {
-        if(this.userRepository.existsByUserId(userId)){
-            return true;
-        }
-        return false;
+        return this.userRepository.existsByUserId(userId);
     }
 }

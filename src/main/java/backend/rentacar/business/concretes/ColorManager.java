@@ -6,11 +6,9 @@ import backend.rentacar.core.utilities.mapping.ModelMapperService;
 import backend.rentacar.core.utilities.results.DataResult;
 import backend.rentacar.core.utilities.results.ErrorDataResult;
 import backend.rentacar.core.utilities.results.SuccessDataResult;
-import backend.rentacar.entities.concretes.User;
 import backend.rentacar.entities.dtos.colordto.ColorCreateDto;
 import backend.rentacar.entities.dtos.colordto.ColorUpdateDto;
 import backend.rentacar.entities.dtos.colordto.ColorViewDto;
-import backend.rentacar.entities.dtos.userdto.UserViewDto;
 import backend.rentacar.repositories.abstracts.ColorRepository;
 import backend.rentacar.entities.concretes.Color;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,15 +98,9 @@ public class ColorManager implements ColorService {
         return new SuccessDataResult<>(result, Messages.ColorMessages.COLOR_LISTED_BY_COLOR_NAME);  }
 
     private boolean checkIfColorNameExists(String colorName) {
-        if(this.colorRepository.existsByColorName(colorName)){
-            return true;
-        }
-        return false;
+        return this.colorRepository.existsByColorName(colorName);
     }
     private boolean checkIfColorIdExists(int colorId) {
-        if(this.colorRepository.existsByColorId(colorId)){
-            return true;
-        }
-        return false;
+        return this.colorRepository.existsByColorId(colorId);
     }
 }

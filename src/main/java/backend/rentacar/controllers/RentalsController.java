@@ -3,7 +3,6 @@ package backend.rentacar.controllers;
 import backend.rentacar.business.abstracts.RentalService;
 import backend.rentacar.entities.dtos.rentaldto.RentalCreateDto;
 import backend.rentacar.entities.dtos.rentaldto.RentalUpdateDto;
-import backend.rentacar.entities.dtos.userdto.UserUpdateDto;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,7 +21,7 @@ public class RentalsController {
     public RentalsController(RentalService rentalService) {
         this.rentalService = rentalService;
     }
-    @GetMapping("/getall")
+    @GetMapping("/getAll")
     public ResponseEntity<?> getAll(){
         return new ResponseEntity<>(this.rentalService.getAll(), HttpStatus.OK);
     }
@@ -32,7 +31,7 @@ public class RentalsController {
     }
     @PostMapping("/add")
     public ResponseEntity<?> add(@Valid @RequestBody RentalCreateDto rentalCreateDto){
-        return new ResponseEntity(this.rentalService.add(rentalCreateDto), HttpStatus.CREATED);
+        return new ResponseEntity<>(this.rentalService.add(rentalCreateDto), HttpStatus.CREATED);
     }
     @GetMapping("getallbyrentdateasc")
     ResponseEntity<?> getAllByRentDateAsc(){

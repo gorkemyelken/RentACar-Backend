@@ -6,11 +6,9 @@ import backend.rentacar.core.utilities.mapping.ModelMapperService;
 import backend.rentacar.core.utilities.results.DataResult;
 import backend.rentacar.core.utilities.results.ErrorDataResult;
 import backend.rentacar.core.utilities.results.SuccessDataResult;
-import backend.rentacar.entities.concretes.User;
 import backend.rentacar.entities.dtos.branddto.BrandCreateDto;
 import backend.rentacar.entities.dtos.branddto.BrandUpdateDto;
 import backend.rentacar.entities.dtos.branddto.BrandViewDto;
-import backend.rentacar.entities.dtos.userdto.UserViewDto;
 import backend.rentacar.repositories.abstracts.BrandRepository;
 import backend.rentacar.entities.concretes.Brand;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,16 +101,10 @@ public class BrandManager implements BrandService {
     }
 
     private boolean checkIfBrandIdExists(int brandId) {
-        if(this.brandRepository.existsByBrandId(brandId)){
-            return true;
-        }
-        return false;
+        return this.brandRepository.existsByBrandId(brandId);
     }
 
     private boolean checkIfBrandNameExists(String brandName) {
-        if(this.brandRepository.existsByBrandName(brandName)){
-            return true;
-        }
-        return false;
+        return this.brandRepository.existsByBrandName(brandName);
     }
 }
