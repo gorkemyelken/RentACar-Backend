@@ -1,5 +1,6 @@
 package backend.rentacar.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -43,14 +44,19 @@ public class Car {
     @Column(name="description")
     private String description;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="brand_id")
+    @JsonIgnore
     private Brand brand;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="color_id")
+    @JsonIgnore
     private Color color;
 
     @OneToMany(mappedBy = "car")
     private List<CarImage> carImages;
+
+    @OneToOne(mappedBy = "car")
+    private Rental rental;
 }

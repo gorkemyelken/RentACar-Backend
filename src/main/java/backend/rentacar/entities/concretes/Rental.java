@@ -1,5 +1,7 @@
 package backend.rentacar.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,6 +10,7 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Data
 @Table(name="rentals")
 @AllArgsConstructor
@@ -25,12 +28,14 @@ public class Rental {
     @Column(name="rental_id")
     private int rentalId;
 
-    @OneToOne()
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="car_id")
+    @JsonIgnore
     private Car car;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="customer_id")
+    @JsonIgnore
     private Customer customer;
 
     @Column(name = "rent_date")

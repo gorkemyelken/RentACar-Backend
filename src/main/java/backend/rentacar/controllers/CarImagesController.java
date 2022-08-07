@@ -22,7 +22,7 @@ public class CarImagesController {
         this.carImageService = carImageService;
     }
 
-    @GetMapping("/getAll")
+    @GetMapping("/getall")
     public ResponseEntity<?> getAll(){
         return new ResponseEntity<>(this.carImageService.getAll(), HttpStatus.OK);
     }

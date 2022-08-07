@@ -21,7 +21,7 @@ public class ColorsController {
         this.colorService = colorService;
     }
 
-    @GetMapping("/getAll")
+    @GetMapping("/getall")
     public ResponseEntity<?> getAll(){
         return new ResponseEntity<>(this.colorService.getAll(), HttpStatus.OK);
     }

@@ -1,5 +1,6 @@
 package backend.rentacar.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,7 +25,8 @@ public class CarImage {
     @Column(name="image_path")
     private String imagePath;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="car_id")
+    @JsonIgnore
     private Car car;
 }

@@ -21,7 +21,7 @@ public class RentalsController {
     public RentalsController(RentalService rentalService) {
         this.rentalService = rentalService;
     }
-    @GetMapping("/getAll")
+    @GetMapping("/getall")
     public ResponseEntity<?> getAll(){
         return new ResponseEntity<>(this.rentalService.getAll(), HttpStatus.OK);
     }
