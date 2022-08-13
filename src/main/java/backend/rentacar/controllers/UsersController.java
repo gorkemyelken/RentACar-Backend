@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 
 @RestController
 @RequestMapping("/api/users")
+@CrossOrigin
 public class UsersController {
 
     private final UserService userService;

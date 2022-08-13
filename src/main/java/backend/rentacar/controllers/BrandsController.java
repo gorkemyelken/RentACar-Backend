@@ -13,6 +13,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/brands")
+@CrossOrigin
 public class BrandsController {
 
     private final BrandService brandService;

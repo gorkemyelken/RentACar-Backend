@@ -13,6 +13,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/rentals")
+@CrossOrigin
 public class RentalsController {
 
     private final RentalService rentalService;

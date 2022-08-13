@@ -13,6 +13,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/carimages")
+@CrossOrigin
 public class CarImagesController {
 
     private final CarImageService carImageService;
