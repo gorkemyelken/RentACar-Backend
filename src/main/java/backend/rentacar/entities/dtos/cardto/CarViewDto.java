@@ -11,6 +11,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CarViewDto {
+    private int carId;
+
     private String carName;
 
     private double dailyPrice;
@@ -27,6 +29,6 @@ public class CarViewDto {
 
     private Rental rental;
     public static CarViewDto of(Car car){
-        return new CarViewDto(car.getCarName(),car.getDailyPrice(),car.getModelYear(),car.getDescription(),car.getBrand(),car.getColor(), car.getCarImages(), car.getRental());
+        return new CarViewDto(car.getCarId(), car.getCarName(),car.getDailyPrice(),car.getModelYear(),car.getDescription(),car.getBrand(),car.getColor(), car.getCarImages(), car.getRental());
     }
 }

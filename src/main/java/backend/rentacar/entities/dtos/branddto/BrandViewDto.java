@@ -9,8 +9,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BrandViewDto {
+    private int brandId;
+
     private String brandName;
+
+    private String brandImagePath;
     public static BrandViewDto of(Brand brand){
-        return new BrandViewDto(brand.getBrandName());
+        return new BrandViewDto(brand.getBrandId(), brand.getBrandName(), brand.getBrandImagePath());
     }
 }

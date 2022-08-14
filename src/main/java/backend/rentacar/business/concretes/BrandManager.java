@@ -70,6 +70,7 @@ public class BrandManager implements BrandService {
         else{
             Brand brand = this.brandRepository.findByBrandId(brandId);
             brand.setBrandName(brandUpdateDto.getBrandName());
+            brand.setBrandImagePath(brandUpdateDto.getBrandImagePath());
             this.brandRepository.save(brand);
             return new SuccessDataResult<>(BrandViewDto.of(brand), Messages.GlobalMessages.DATA_UPDATED);
         }

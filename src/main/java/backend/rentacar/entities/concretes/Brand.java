@@ -28,6 +28,9 @@ public class Brand {
     @Column(name="brand_name")
     private String brandName;
 
+    @Column(name="brand_image_path")
+    private String brandImagePath;
+
     @OneToMany(mappedBy = "brand")
     private List<Car> cars;
 }

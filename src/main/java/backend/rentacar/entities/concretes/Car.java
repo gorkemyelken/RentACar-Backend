@@ -18,6 +18,15 @@ import java.util.List;
 @NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler","carImages"})
 public class Car {
+    public Car(int carId, String carName, double dailyPrice, int modelYear, String description, Brand brand, Color color) {
+        this.carId = carId;
+        this.carName = carName;
+        this.dailyPrice = dailyPrice;
+        this.modelYear = modelYear;
+        this.description = description;
+        this.brand = brand;
+        this.color = color;
+    }
     public Car(String carName, double dailyPrice, int modelYear, String description, Brand brand, Color color) {
         this.carName = carName;
         this.dailyPrice = dailyPrice;
@@ -26,7 +35,6 @@ public class Car {
         this.brand = brand;
         this.color = color;
     }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="car_id")
