@@ -65,12 +65,14 @@ public class Messages {
     public static class CarImageMessages{
         public static final String IMAGE_PATH_ALREADY_EXIST = "Image path already exist.";
         public static final String CAR_IMAGE_ID_NOT_FOUND = "Car image id not found.";
+        public static final String CAR_IMAGE_LISTED_BY_CAR_IMAGE_ID = "Car image listed by car image id.";
     }
     public static class CustomerMessages{
 
         public static final String CUSTOMER_EMAIL_ALREADY_EXIST = "Customer email already exist.";
         public static final String CUSTOMER_NATIONALITY_NUMBER_ALREADY_EXIST = "Customer nationality number already exist.";
         public static final String CUSTOMER_ID_NOT_FOUND = "Customer id not found.";
+        public static final String CUSTOMER_LISTED_BY_CUSTOMER_ID = "Customer listed by customer id.";
     }
 }
 

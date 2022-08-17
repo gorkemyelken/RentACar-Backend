@@ -12,4 +12,5 @@ public interface CustomerService {
     DataResult<CustomerViewDto> add(CustomerCreateDto customerCreateDto);
     DataResult<CustomerViewDto> update(int customerId, CustomerUpdateDto customerUpdateDto);
     DataResult<CustomerViewDto> delete(int customerId);
+    DataResult<CustomerViewDto> findByCustomerId(int customerId);
 }

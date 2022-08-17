@@ -74,6 +74,18 @@ public class CarImageManager implements CarImageService {
         }
     }
 
+    @Override
+    public DataResult<CarImageViewDto> findByCarImageId(int carImageId) {
+        if(!checkIfCarImageIdExists(carImageId)){
+            return new ErrorDataResult<>(Messages.CarImageMessages.CAR_IMAGE_ID_NOT_FOUND);
+        }
+        else{
+            CarImage carImage = this.carImageRepository.findByCarImageId(carImageId);
+            CarImageViewDto result = this.modelMapperService.forDto().map(carImage, CarImageViewDto.class);
+            return new SuccessDataResult<>(result, Messages.CarImageMessages.CAR_IMAGE_LISTED_BY_CAR_IMAGE_ID);
+        }
+    }
+
     private boolean checkIfImagePathExists(String imagePath) {
         return this.carImageRepository.existsByImagePath(imagePath);
     }

@@ -39,4 +39,8 @@ public class CustomerController {
     public ResponseEntity<?> delete(@RequestParam int customerId){
         return new ResponseEntity<>(this.customerService.delete(customerId), HttpStatus.OK);
     }
+    @GetMapping("/findbycustomerid")
+    public ResponseEntity<?> findByCustomerId(@RequestParam int customerId){
+        return new ResponseEntity<>(this.customerService.findByCustomerId(customerId), HttpStatus.OK);
+    }
 }

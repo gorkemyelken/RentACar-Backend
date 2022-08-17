@@ -40,4 +40,8 @@ public class CarImagesController {
     public ResponseEntity<?> delete(@RequestParam int carImageId){
         return new ResponseEntity<>(this.carImageService.delete(carImageId), HttpStatus.OK);
     }
+    @GetMapping("/findbycarimageid")
+    public ResponseEntity<?> findByCarImageId(@RequestParam int carImageId){
+        return new ResponseEntity<>(this.carImageService.findByCarImageId(carImageId), HttpStatus.OK);
+    }
 }

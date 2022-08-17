@@ -80,6 +80,18 @@ public class CustomerManager implements CustomerService {
         }
     }
 
+    @Override
+    public DataResult<CustomerViewDto> findByCustomerId(int customerId) {
+        if(!checkIfCustomerIdExists(customerId)){
+            return new ErrorDataResult<>(Messages.CustomerMessages.CUSTOMER_ID_NOT_FOUND);
+        }
+        else{
+            Customer customer = this.customerRepository.findByCustomerId(customerId);
+            CustomerViewDto result = this.modelMapperService.forDto().map(customer, CustomerViewDto.class);
+            return new SuccessDataResult<>(result, Messages.CustomerMessages.CUSTOMER_LISTED_BY_CUSTOMER_ID);
+        }
+    }
+
     private boolean checkIfCustomerIdExists(int customerId) {
         if(this.customerRepository.existsByCustomerId(customerId)){
             return true;
