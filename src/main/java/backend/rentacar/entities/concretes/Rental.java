@@ -33,7 +33,7 @@ public class Rental {
     @JsonIgnore
     private Car car;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="customer_id")
     @JsonIgnore
     private Customer customer;

@@ -3,7 +3,6 @@ package backend.rentacar.business.constants;
 import backend.rentacar.entities.dtos.branddto.BrandViewDto;
 import backend.rentacar.entities.dtos.cardto.CarViewDto;
 import backend.rentacar.entities.dtos.colordto.ColorViewDto;
-import backend.rentacar.entities.dtos.userdto.UserViewDto;
 
 public class Messages {
     public static class GlobalMessages{
@@ -62,12 +61,6 @@ public class Messages {
         public static final String RENTAL_LISTED_BY_RETURN_DATE_ASC = "Rentals listed by return date in ascending order.";
         public static final String RENTAL_LISTED_BY_RETURN_DATE_DESC = "Rentals listed by return date in descending order.";
         public static final String RENTAL_ID_NOT_FOUND = "Rental id not found.";
-    }
-    public static class UserMessages{
-        public static final String USER_LISTED_BY_EMAIL = "User listed by email.";
-        public static final String USER_EMAIL_ALREADY_EXIST = "User email already exist.";
-        public static final String USER_ID_NOT_FOUND = "User id not found.";
-        public static final String USER_EMAIL_NOT_FOUND = "User email not found.";
     }
     public static class CarImageMessages{
         public static final String IMAGE_PATH_ALREADY_EXIST = "Image path already exist.";

@@ -17,8 +17,9 @@ import java.util.List;
 @NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler","cars"})
 public class Brand {
-    public Brand(String brandName){
+    public Brand(String brandName, String brandImagePath){
         this.brandName = brandName;
+        this.brandImagePath = brandImagePath;
     }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

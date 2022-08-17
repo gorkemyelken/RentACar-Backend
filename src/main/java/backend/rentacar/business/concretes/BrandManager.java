@@ -57,7 +57,7 @@ public class BrandManager implements BrandService {
             return new ErrorDataResult<>(Messages.BrandMessages.BRAND_NAME_ALREADY_EXIST);
         }
         else{
-            Brand brand = this.brandRepository.save(new Brand(brandCreateDto.getBrandName()));
+            Brand brand = this.brandRepository.save(new Brand(brandCreateDto.getBrandName(), brandCreateDto.getBrandImagePath()));
             return new SuccessDataResult<>(BrandViewDto.of(brand), Messages.GlobalMessages.DATA_ADDED);
         }
     }

@@ -12,4 +12,6 @@ import javax.validation.constraints.NotNull;
 public class BrandCreateDto {
     @NotNull
     private String brandName;
+
+    private String brandImagePath;
 }
