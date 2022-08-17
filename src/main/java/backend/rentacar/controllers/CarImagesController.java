@@ -3,6 +3,7 @@ package backend.rentacar.controllers;
 import backend.rentacar.business.abstracts.CarImageService;
 import backend.rentacar.entities.dtos.carimagedto.CarImageCreateDto;
 import backend.rentacar.entities.dtos.carimagedto.CarImageUpdateDto;
+import backend.rentacar.entities.dtos.carimagedto.CarImageViewDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,25 +24,25 @@ public class CarImagesController {
     }
 
     @GetMapping("/getall")
-    public ResponseEntity<?> getAll(){
-        return new ResponseEntity<>(this.carImageService.getAll(), HttpStatus.OK);
+    public ResponseEntity<CarImageViewDto> getAll(){
+        return new ResponseEntity(this.carImageService.getAll(), HttpStatus.OK);
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> add(@Valid @RequestBody CarImageCreateDto carImageCreateDto){
-        return new ResponseEntity<>(this.carImageService.add(carImageCreateDto), HttpStatus.CREATED);
+    public ResponseEntity<CarImageViewDto> add(@Valid @RequestBody CarImageCreateDto carImageCreateDto){
+        return new ResponseEntity(this.carImageService.add(carImageCreateDto), HttpStatus.CREATED);
     }
     @PutMapping("/update")
-    public ResponseEntity<?> update(@RequestParam int carImageId, @Valid @RequestBody CarImageUpdateDto carImageUpdateDto){
-        return new ResponseEntity<>(this.carImageService.update(carImageId, carImageUpdateDto), HttpStatus.OK);
+    public ResponseEntity<CarImageViewDto> update(@RequestParam int carImageId, @Valid @RequestBody CarImageUpdateDto carImageUpdateDto){
+        return new ResponseEntity(this.carImageService.update(carImageId, carImageUpdateDto), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<?> delete(@RequestParam int carImageId){
-        return new ResponseEntity<>(this.carImageService.delete(carImageId), HttpStatus.OK);
+    public ResponseEntity<CarImageViewDto> delete(@RequestParam int carImageId){
+        return new ResponseEntity(this.carImageService.delete(carImageId), HttpStatus.OK);
     }
     @GetMapping("/findbycarimageid")
-    public ResponseEntity<?> findByCarImageId(@RequestParam int carImageId){
-        return new ResponseEntity<>(this.carImageService.findByCarImageId(carImageId), HttpStatus.OK);
+    public ResponseEntity<CarImageViewDto> findByCarImageId(@RequestParam int carImageId){
+        return new ResponseEntity(this.carImageService.findByCarImageId(carImageId), HttpStatus.OK);
     }
 }

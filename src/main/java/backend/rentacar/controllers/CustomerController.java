@@ -3,6 +3,7 @@ package backend.rentacar.controllers;
 import backend.rentacar.business.abstracts.CustomerService;
 import backend.rentacar.entities.dtos.customerdto.CustomerCreateDto;
 import backend.rentacar.entities.dtos.customerdto.CustomerUpdateDto;
+import backend.rentacar.entities.dtos.customerdto.CustomerViewDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,25 +23,25 @@ public class CustomerController {
     }
 
     @GetMapping("/getAll")
-    public ResponseEntity<?> getall(){
-        return new ResponseEntity<>(this.customerService.getAll(), HttpStatus.OK);
+    public ResponseEntity<CustomerViewDto> getall(){
+        return new ResponseEntity(this.customerService.getAll(), HttpStatus.OK);
     }
     @PostMapping("/add")
-    public ResponseEntity<?> add(@Valid @RequestBody CustomerCreateDto customerCreateDto){
+    public ResponseEntity<CustomerViewDto> add(@Valid @RequestBody CustomerCreateDto customerCreateDto){
 
-        return new ResponseEntity<>(this.customerService.add(customerCreateDto), HttpStatus.CREATED);
+        return new ResponseEntity(this.customerService.add(customerCreateDto), HttpStatus.CREATED);
     }
     @PutMapping("/update")
-    public ResponseEntity<?> update(@RequestParam int customerId, @Valid @RequestBody CustomerUpdateDto customerUpdateDto){
-        return new ResponseEntity<>(this.customerService.update(customerId, customerUpdateDto), HttpStatus.OK);
+    public ResponseEntity<CustomerViewDto> update(@RequestParam int customerId, @Valid @RequestBody CustomerUpdateDto customerUpdateDto){
+        return new ResponseEntity(this.customerService.update(customerId, customerUpdateDto), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<?> delete(@RequestParam int customerId){
-        return new ResponseEntity<>(this.customerService.delete(customerId), HttpStatus.OK);
+    public ResponseEntity<CustomerViewDto> delete(@RequestParam int customerId){
+        return new ResponseEntity(this.customerService.delete(customerId), HttpStatus.OK);
     }
     @GetMapping("/findbycustomerid")
-    public ResponseEntity<?> findByCustomerId(@RequestParam int customerId){
-        return new ResponseEntity<>(this.customerService.findByCustomerId(customerId), HttpStatus.OK);
+    public ResponseEntity<CustomerViewDto> findByCustomerId(@RequestParam int customerId){
+        return new ResponseEntity(this.customerService.findByCustomerId(customerId), HttpStatus.OK);
     }
 }
