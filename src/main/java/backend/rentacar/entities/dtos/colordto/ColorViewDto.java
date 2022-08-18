@@ -9,9 +9,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ColorViewDto {
+    private int colorId;
+
     private String colorName;
 
     public static ColorViewDto of(Color color){
-        return new ColorViewDto(color.getColorName());
+        return new ColorViewDto(color.getColorId(),color.getColorName());
     }
 }

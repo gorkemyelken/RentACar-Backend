@@ -107,7 +107,7 @@ public class CarManager implements CarService {
 
     @Override
     public DataResult<CarViewDto> update(int carId, CarUpdateDto carUpdateDto) {
-        if(!checkIfCarIdExists(carId)){
+        if(checkIfCarIdExists(carId)){
             return new ErrorDataResult<>(Messages.CarMessages.CAR_ID_NOT_FOUND);
         }
         else{
@@ -125,7 +125,7 @@ public class CarManager implements CarService {
 
     @Override
     public DataResult<CarViewDto> delete(int carId) {
-        if(!checkIfCarIdExists(carId)){
+        if(checkIfCarIdExists(carId)){
             return new ErrorDataResult<>(Messages.CarMessages.CAR_ID_NOT_FOUND);
         }
         else{
@@ -137,7 +137,7 @@ public class CarManager implements CarService {
 
     @Override
     public DataResult<CarViewDto> findByCarId(int carId) {
-        if(!checkIfCarIdExists(carId)){
+        if(checkIfCarIdExists(carId)){
             return new ErrorDataResult<>(Messages.CarMessages.CAR_ID_NOT_FOUND);
         }else{
         Car car = this.carRepository.findByCarId(carId);
@@ -228,7 +228,7 @@ public class CarManager implements CarService {
     }
 
     private boolean checkIfCarIdExists(int carId) {
-        return this.carRepository.existsByCarId(carId);
+        return !this.carRepository.existsByCarId(carId);
     }
 
 }

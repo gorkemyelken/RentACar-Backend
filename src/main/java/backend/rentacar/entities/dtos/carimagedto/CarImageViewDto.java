@@ -10,10 +10,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CarImageViewDto {
+    private int carImageId;
+
     private String imagePath;
 
     private Car car;
     public static CarImageViewDto of(CarImage carImage){
-        return new CarImageViewDto(carImage.getImagePath(), carImage.getCar());
+        return new CarImageViewDto(carImage.getCarImageId(),carImage.getImagePath(), carImage.getCar());
     }
 }

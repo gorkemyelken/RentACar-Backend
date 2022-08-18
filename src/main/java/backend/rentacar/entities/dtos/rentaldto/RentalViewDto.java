@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RentalViewDto {
+    private int rentalId;
+
     private Car car;
 
     private Customer customer;
@@ -20,6 +22,6 @@ public class RentalViewDto {
     private java.sql.Date returnDate;
 
     public static RentalViewDto of(Rental rental){
-        return new RentalViewDto(rental.getCar(), rental.getCustomer(),rental.getRentDate(), rental.getReturnDate());
+        return new RentalViewDto(rental.getRentalId(),rental.getCar(), rental.getCustomer(),rental.getRentDate(), rental.getReturnDate());
     }
 }

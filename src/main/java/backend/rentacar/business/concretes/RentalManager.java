@@ -38,7 +38,7 @@ public class RentalManager implements RentalService {
 
     @Override
     public DataResult<RentalViewDto> findByRentalId(int rentalId) {
-        if(!checkIfRentalIdExists(rentalId)){
+        if(checkIfRentalIdExists(rentalId)){
             return new ErrorDataResult<>(Messages.RentalMessages.RENTAL_ID_NOT_FOUND);
         }
         else{
@@ -54,7 +54,7 @@ public class RentalManager implements RentalService {
 
     @Override
     public DataResult<RentalViewDto> update(int rentalId, RentalUpdateDto rentalUpdateDto) {
-        if(!checkIfRentalIdExists(rentalId)){
+        if(checkIfRentalIdExists(rentalId)){
             return new ErrorDataResult<>(Messages.RentalMessages.RENTAL_ID_NOT_FOUND);
         }
         else{
@@ -70,7 +70,7 @@ public class RentalManager implements RentalService {
 
     @Override
     public DataResult<RentalViewDto> delete(int rentalId) {
-        if(!checkIfRentalIdExists(rentalId)){
+        if(checkIfRentalIdExists(rentalId)){
             return new ErrorDataResult<>(Messages.RentalMessages.RENTAL_ID_NOT_FOUND);
         }
         else{
@@ -109,6 +109,6 @@ public class RentalManager implements RentalService {
         return new SuccessDataResult<>(result, Messages.RentalMessages.RENTAL_LISTED_BY_RETURN_DATE_DESC);    }
 
     private boolean checkIfRentalIdExists(int rentalId) {
-        return this.rentalRepository.existsByRentalId(rentalId);
+        return !this.rentalRepository.existsByRentalId(rentalId);
     }
 }

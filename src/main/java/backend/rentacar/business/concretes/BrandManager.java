@@ -64,7 +64,7 @@ public class BrandManager implements BrandService {
 
     @Override
     public DataResult<BrandViewDto> update(int brandId, BrandUpdateDto brandUpdateDto) {
-        if(!checkIfBrandIdExists(brandId)){
+        if(checkIfBrandIdExists(brandId)){
             return new ErrorDataResult<>(Messages.BrandMessages.BRAND_ID_NOT_FOUND);
         }
         else{
@@ -78,7 +78,7 @@ public class BrandManager implements BrandService {
 
     @Override
     public DataResult<BrandViewDto> delete(int brandId) {
-        if(!checkIfBrandIdExists(brandId)){
+        if(checkIfBrandIdExists(brandId)){
             return new ErrorDataResult<>(Messages.BrandMessages.BRAND_ID_NOT_FOUND);
         }
         else{
@@ -90,7 +90,7 @@ public class BrandManager implements BrandService {
 
     @Override
     public DataResult<BrandViewDto> findByBrandId(int brandId) {
-        if(!checkIfBrandIdExists(brandId)){
+        if(checkIfBrandIdExists(brandId)){
             return new ErrorDataResult<>(Messages.BrandMessages.BRAND_ID_NOT_FOUND);
         }
         else{
@@ -110,7 +110,7 @@ public class BrandManager implements BrandService {
     }
 
     private boolean checkIfBrandIdExists(int brandId) {
-        return this.brandRepository.existsByBrandId(brandId);
+        return !this.brandRepository.existsByBrandId(brandId);
     }
 
     private boolean checkIfBrandNameExists(String brandName) {

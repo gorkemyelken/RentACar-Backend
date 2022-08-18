@@ -62,7 +62,7 @@ public class ColorManager implements ColorService {
 
     @Override
     public DataResult<ColorViewDto> update(int colorId, ColorUpdateDto colorUpdateDto) {
-        if(!checkIfColorIdExists(colorId)){
+        if(checkIfColorIdExists(colorId)){
             return new ErrorDataResult<>(Messages.ColorMessages.COLOR_ID_NOT_FOUND);
         }
         else{
@@ -75,7 +75,7 @@ public class ColorManager implements ColorService {
 
     @Override
     public DataResult<ColorViewDto> delete(int colorId) {
-        if(!checkIfColorIdExists(colorId)){
+        if(checkIfColorIdExists(colorId)){
             return new ErrorDataResult<>(Messages.ColorMessages.COLOR_ID_NOT_FOUND);
         }
         else{
@@ -87,7 +87,7 @@ public class ColorManager implements ColorService {
 
     @Override
     public DataResult<ColorViewDto> findByColorId(int colorId) {
-        if(!checkIfColorIdExists(colorId)){
+        if(checkIfColorIdExists(colorId)){
             return new ErrorDataResult<>(Messages.ColorMessages.COLOR_ID_NOT_FOUND);
         }
         else{
@@ -109,6 +109,6 @@ public class ColorManager implements ColorService {
         return this.colorRepository.existsByColorName(colorName);
     }
     private boolean checkIfColorIdExists(int colorId) {
-        return this.colorRepository.existsByColorId(colorId);
+        return !this.colorRepository.existsByColorId(colorId);
     }
 }

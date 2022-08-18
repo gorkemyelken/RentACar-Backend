@@ -52,7 +52,7 @@ public class CustomerManager implements CustomerService {
 
     @Override
     public DataResult<CustomerViewDto> update(int customerId, CustomerUpdateDto customerUpdateDto) {
-        if(!checkIfCustomerIdExists(customerId)){
+        if(checkIfCustomerIdExists(customerId)){
             return new ErrorDataResult<>(Messages.CustomerMessages.CUSTOMER_ID_NOT_FOUND);
         }
         else{
@@ -70,7 +70,7 @@ public class CustomerManager implements CustomerService {
 
     @Override
     public DataResult<CustomerViewDto> delete(int customerId) {
-        if(!checkIfCustomerIdExists(customerId)){
+        if(checkIfCustomerIdExists(customerId)){
             return new ErrorDataResult<>(Messages.CustomerMessages.CUSTOMER_ID_NOT_FOUND);
         }
         else{
@@ -82,7 +82,7 @@ public class CustomerManager implements CustomerService {
 
     @Override
     public DataResult<CustomerViewDto> findByCustomerId(int customerId) {
-        if(!checkIfCustomerIdExists(customerId)){
+        if(checkIfCustomerIdExists(customerId)){
             return new ErrorDataResult<>(Messages.CustomerMessages.CUSTOMER_ID_NOT_FOUND);
         }
         else{
@@ -93,23 +93,14 @@ public class CustomerManager implements CustomerService {
     }
 
     private boolean checkIfCustomerIdExists(int customerId) {
-        if(this.customerRepository.existsByCustomerId(customerId)){
-            return true;
-        }
-        return false;
+        return !this.customerRepository.existsByCustomerId(customerId);
     }
 
     private boolean checkIfCustomerNationalityNumberExists(String nationalityNumber) {
-        if(this.customerRepository.existsByNationalityNumber(nationalityNumber)){
-            return true;
-        }
-        return false;
+        return this.customerRepository.existsByNationalityNumber(nationalityNumber);
     }
 
     private boolean checkIfCustomerEmailExists(String email) {
-        if(this.customerRepository.existsByEmail(email)){
-            return true;
-        }
-        return false;
+        return this.customerRepository.existsByEmail(email);
     }
 }

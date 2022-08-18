@@ -5,8 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler","carImages"})
-public class Car {
+public class Car{
     public Car(int carId, String carName, double dailyPrice, int modelYear, String description, Brand brand, Color color) {
         this.carId = carId;
         this.carName = carName;
@@ -62,7 +60,8 @@ public class Car {
     @JsonIgnore
     private Color color;
 
-    @OneToMany(mappedBy = "car")
+    @OneToMany(mappedBy = "car", fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<CarImage> carImages;
 
     @OneToOne(mappedBy = "car")

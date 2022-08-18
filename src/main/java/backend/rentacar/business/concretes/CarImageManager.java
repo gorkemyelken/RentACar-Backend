@@ -48,7 +48,7 @@ public class CarImageManager implements CarImageService {
 
     @Override
     public DataResult<CarImageViewDto> update(int carImageId, CarImageUpdateDto carImageUpdateDto) {
-        if(!checkIfCarImageIdExists(carImageId)){
+        if(checkIfCarImageIdExists(carImageId)){
             return new ErrorDataResult<>(Messages.CarImageMessages.CAR_IMAGE_ID_NOT_FOUND);
         }
         else{
@@ -64,7 +64,7 @@ public class CarImageManager implements CarImageService {
 
     @Override
     public DataResult<CarImageViewDto> delete(int carImageId) {
-        if(!checkIfCarImageIdExists(carImageId)){
+        if(checkIfCarImageIdExists(carImageId)){
             return new ErrorDataResult<>(Messages.CarImageMessages.CAR_IMAGE_ID_NOT_FOUND);
         }
         else{
@@ -76,7 +76,7 @@ public class CarImageManager implements CarImageService {
 
     @Override
     public DataResult<CarImageViewDto> findByCarImageId(int carImageId) {
-        if(!checkIfCarImageIdExists(carImageId)){
+        if(checkIfCarImageIdExists(carImageId)){
             return new ErrorDataResult<>(Messages.CarImageMessages.CAR_IMAGE_ID_NOT_FOUND);
         }
         else{
@@ -90,7 +90,7 @@ public class CarImageManager implements CarImageService {
         return this.carImageRepository.existsByImagePath(imagePath);
     }
     private boolean checkIfCarImageIdExists(int carImageId) {
-        return this.carImageRepository.existsByCarImageId(carImageId);
+        return !this.carImageRepository.existsByCarImageId(carImageId);
     }
 
 }

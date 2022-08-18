@@ -13,6 +13,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CustomerViewDto {
+    private int customerId;
+
     private String firstName;
 
     private String lastName;
@@ -26,6 +28,6 @@ public class CustomerViewDto {
     private List<Rental> rentals;
 
     public static CustomerViewDto of(Customer customer){
-        return new CustomerViewDto(customer.getFirstName(), customer.getLastName(), customer.getNationalityNumber(), customer.getBirthYear(), customer.getEmail(), customer.getRentals());
+        return new CustomerViewDto(customer.getCustomerId(),customer.getFirstName(), customer.getLastName(), customer.getNationalityNumber(), customer.getBirthYear(), customer.getEmail(), customer.getRentals());
     }
 }
