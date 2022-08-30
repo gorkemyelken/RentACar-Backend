@@ -32,4 +32,5 @@ public interface CarService {
     DataResult<List<CarViewDto>> findByDescriptionContaining(String infix);
     DataResult<List<CarViewDto>>  findByBrand(int brandId);
     DataResult<List<CarViewDto>> findByColor(int colorId);
+    DataResult<List<CarViewDto>> findByFiltered(int brandId, int colorId, int startModelYear, int endModelYear, double startDailyPrice, double endDailyPrice);
 }

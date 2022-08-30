@@ -121,4 +121,13 @@ public class CarsController {
     public ResponseEntity<DataResult<CarViewDto>> delete(@RequestParam int carId){
         return new ResponseEntity<>(this.carService.delete(carId), HttpStatus.OK);
     }
+
+    @GetMapping("/findbyfiltered")
+    public ResponseEntity<DataResult<List<CarViewDto>>> findByFiltered(@RequestParam(value = "brandId") int brandId,
+                                                                       @RequestParam(value = "colorId") int colorId,
+                                                                       @RequestParam(value = "startModelYear") int startModelYear,
+                                                                       @RequestParam(value = "endModelYear") int endModelYear ,
+                                                                       @RequestParam(value = "startDailyPrice") double startDailyPrice,
+                                                                       @RequestParam(value = "endDailyPrice") double endDailyPrice){
+        return new ResponseEntity<>(this.carService.findByFiltered(brandId, colorId, startModelYear, endModelYear, startDailyPrice, endDailyPrice), HttpStatus.OK);}
 }

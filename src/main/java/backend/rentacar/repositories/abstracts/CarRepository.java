@@ -3,6 +3,7 @@ package backend.rentacar.repositories.abstracts;
 import backend.rentacar.entities.concretes.Car;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.sql.Date;
 import java.util.List;
 
 public interface CarRepository extends JpaRepository<Car,Integer> {
@@ -21,4 +22,5 @@ public interface CarRepository extends JpaRepository<Car,Integer> {
     List<Car> findByColor_ColorId(int colorId);
     boolean existsByCarId(int carId);
     boolean existsByCarName(String carName);
+    List<Car> findByBrand_BrandIdAndColor_ColorIdAndModelYearBetweenAndDailyPriceBetween(int brandId, int colorId, int startModelYear, int endModelYear, double startDailyPrice, double endDailyPrice);
 }

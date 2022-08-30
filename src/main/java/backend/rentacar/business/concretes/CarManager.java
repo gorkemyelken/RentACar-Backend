@@ -223,6 +223,13 @@ public class CarManager implements CarService {
         List<CarViewDto> result = cars.stream().map(car -> this.modelMapperService.forDto().map(car,CarViewDto.class)).collect(Collectors.toList());
         return new SuccessDataResult<>(result, Messages.CarMessages.CAR_LISTED_BY_COLOR);  }
 
+    @Override
+    public DataResult<List<CarViewDto>> findByFiltered(int brandId, int colorId, int startModelYear, int endModelYear, double startDailyPrice, double endDailyPrice) {
+        List<Car> cars = this.carRepository.findByBrand_BrandIdAndColor_ColorIdAndModelYearBetweenAndDailyPriceBetween(brandId, colorId, startModelYear, endModelYear, startDailyPrice, endDailyPrice);
+        List<CarViewDto> result = cars.stream().map(car -> this.modelMapperService.forDto().map(car,CarViewDto.class)).collect(Collectors.toList());
+        return new SuccessDataResult<>(result, Messages.GlobalMessages.DATA_LISTED);
+    }
+
     private boolean checkIfCarNameExists(String carName) {
         return this.carRepository.existsByCarName(carName);
     }
