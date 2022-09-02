@@ -27,8 +27,8 @@ public class CarViewDto {
 
     private List<CarImage> carImages;
 
-    private Rental rental;
+    private List<Rental> rentals;
     public static CarViewDto of(Car car){
-        return new CarViewDto(car.getCarId(), car.getCarName(),car.getDailyPrice(),car.getModelYear(),car.getDescription(),car.getBrand(),car.getColor(), car.getCarImages(), car.getRental());
+        return new CarViewDto(car.getCarId(), car.getCarName(),car.getDailyPrice(),car.getModelYear(),car.getDescription(),car.getBrand(),car.getColor(), car.getCarImages(), car.getRentals());
     }
 }

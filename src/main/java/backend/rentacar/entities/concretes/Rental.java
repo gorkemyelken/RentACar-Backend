@@ -28,7 +28,7 @@ public class Rental {
     @Column(name="rental_id")
     private int rentalId;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="car_id")
     @JsonIgnore
     private Car car;

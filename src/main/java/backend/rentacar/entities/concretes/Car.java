@@ -14,7 +14,7 @@ import java.util.List;
 @Table(name="cars")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","carImages"})
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","carImages","rentals"})
 public class Car{
     public Car(int carId, String carName, double dailyPrice, int modelYear, String description, Brand brand, Color color) {
         this.carId = carId;
@@ -60,10 +60,11 @@ public class Car{
     @JsonIgnore
     private Color color;
 
-    @OneToMany(mappedBy = "car", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "car")
     @JsonIgnore
     private List<CarImage> carImages;
 
-    @OneToOne(mappedBy = "car")
-    private Rental rental;
+    @OneToMany(mappedBy = "car")
+    @JsonIgnore
+    private List<Rental> rentals;
 }

@@ -1,9 +1,5 @@
 package backend.rentacar.business.constants;
 
-import backend.rentacar.entities.dtos.branddto.BrandViewDto;
-import backend.rentacar.entities.dtos.cardto.CarViewDto;
-import backend.rentacar.entities.dtos.colordto.ColorViewDto;
-
 public class Messages {
     public static class GlobalMessages{
         public static final String DATA_LISTED = "Data listed successfully.";
