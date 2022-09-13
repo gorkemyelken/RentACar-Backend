@@ -23,7 +23,6 @@ Technologies used in the project:
 *   PostgreSQL
 *   Lombok
 *   Swagger
-*   Postman
 
 <h2>📧 Contact</h2>
 
