@@ -4,7 +4,7 @@
   <img src="https://user-images.githubusercontent.com/60850092/189976787-93286ac4-8e57-4019-99c4-7194bdc78491.png">
 </p>
   
-<p id="description">'Rent A Car Project' is a public web project developed with the Java Spring Framework.</p>
+<p>Rent A Car Project is designed so as to be used by car rental company specializing in renting cars to customers. It is a web project through which customers can view cars, register, view profile and book car.</p>
 
 <p align="center"><img src="https://img.shields.io/github/issues/gorkemyelken/RentACar-Backend" alt="shields"><img src="https://img.shields.io/github/forks/gorkemyelken/RentACar-Backend" alt="shields"><img src="https://img.shields.io/github/stars/gorkemyelken/RentACar-Backend" alt="shields"></p>
 
